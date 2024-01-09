@@ -1,62 +1,93 @@
-/* src/auth/Login.css */
 .login-container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     position: relative;
+    top: 0;
+    bottom: 0;
     overflow: hidden;
+    width: 100%;
+    
   }
   
-  .login-background {
+  .login-container-wrapper {
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+    height: 100vh;
+    position: relative;
+    width: 100vw;
+    
+  }
+  
+  .login-img {
     width: 100%;
-    height: auto;
-    position: absolute;
+    height: 100vh;
+    object-fit: cover;
+    position: relative;
     top: 0;
     left: 0;
-    z-index: -1;
+    /* z-index: -1; */
   }
   
-  .login-form {
+  .login-form-container {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+  }
+
+  .login-form-container div{
+    align-items: center;
+    position: relative;
+    top: 15%
+  }
+  
+  .login-form-logo{
+    height: 50px;
+  }
+
+  .login-form-title{
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .login-form-subtitle{
     text-align: center;
   }
   
-  form {
+  .login-form-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    position: relative;
+    top: 20%;
+    
   }
   
-  label {
+  .login-form-label {
     font-weight: bold;
   }
   
-  input {
+  .login-form-input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  button {
+  .login-form-button {
     padding: 10px;
-    background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
   }
   
-  button:hover {
-    background-color: #2980b9;
-  }
-  
-  p {
-    margin-top: 10px;
+  .login-form-button:hover {
+    background-color: #ff842c;
   }
   
   a {
@@ -68,3 +99,28 @@
     text-decoration: underline;
   }
   
+
+  @media (min-width: 1113px) {
+    .l-4 {
+      flex: 0 0 33.33333%;
+      max-width: 33.33333%;
+    }
+  
+    .l-8 {
+      flex: 0 0 66.66667%;
+      max-width: 66.66667%;
+    }
+  }
+  
+  /* Medium screens (width >= 740px) and (width < 1113px) */
+  @media (min-width: 740px) and (max-width: 1112px) {
+    .m-0 {
+      flex: 0 0 0;
+      max-width: 0;
+    }
+  
+    .m-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
