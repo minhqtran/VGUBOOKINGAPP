@@ -8,7 +8,6 @@
     bottom: 0;
     overflow: hidden;
     width: 100%;
-    
   }
   
   .login-container-wrapper {
@@ -42,7 +41,7 @@
   .login-form-container div{
     align-items: center;
     position: relative;
-    top: 15%
+    top: 10%
   }
   
   .login-form-logo{
@@ -52,18 +51,21 @@
   .login-form-title{
     margin: 8px 0;
     text-align: center;
+    font-size: var(--h1-font-size);
   }
 
   .login-form-subtitle{
     text-align: center;
+    font-size: var(--normal-font-size);
   }
   
   .login-form-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    position: relative;
-    top: 20%;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
     
   }
   
@@ -72,9 +74,11 @@
   }
   
   .login-form-input {
-    padding: 8px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 450px;
+    font-size: var(--normalize-font-size);
   }
   
   .login-form-button {
@@ -83,7 +87,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: var(--h3-font-size);
   }
   
   .login-form-button:hover {
