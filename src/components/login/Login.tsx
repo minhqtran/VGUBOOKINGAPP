@@ -8,6 +8,7 @@ import './Login.css'; // Import the CSS file
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
   const handleLogin = () => {
     // Add your authentication logic here
@@ -21,8 +22,8 @@ const Login: React.FC = () => {
           <div className="login-form-container">
             <img src={loginLogo} alt="VGU Logo" className='login-form-logo' />
             <div>
-            <h1 className="login-form-title">VGU Booking App</h1>
-            <p className="login-form-subtitle">Please Sign in to continue</p>
+              <h1 className="login-form-title">VGU Booking App</h1>
+              <p className="login-form-subtitle">Please Sign in to continue</p>
             </div>
             
             <form className="login-form-content">
@@ -44,6 +45,21 @@ const Login: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
               />
+              <div className="login-remember-forgot-container">
+                <div className="login-remember-me">
+                  <input
+                    type="checkbox"
+                    id="rememberMe"
+                    checked={rememberMe}
+                    className='login-remember-checkbox'
+                    onChange={() => setRememberMe(!rememberMe)}
+                  />
+                  <label className='login-remember-label' htmlFor="rememberMe">Remember me</label>
+                </div>
+                <div className="login-forgot-password">
+                  <Link className="login-forgot-password-link" to="/forgot-password">Forgot Password?</Link>
+                </div>
+              </div>
               <button className="button login-form-button" type="button" onClick={handleLogin}>
                 Login
               </button>
