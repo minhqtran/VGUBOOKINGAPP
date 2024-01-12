@@ -57,7 +57,7 @@ const Login: React.FC = () => {
                   <label className='login-remember-label' htmlFor="rememberMe">Remember me</label>
                 </div>
                 <div className="login-forgot-password">
-                  <Link className="login-forgot-password-link" to="/forgot-password">Forgot Password?</Link>
+                  <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
               </div>
               <button className="button login-form-button" type="button" onClick={handleLogin}>

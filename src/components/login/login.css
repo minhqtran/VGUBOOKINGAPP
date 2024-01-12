@@ -103,12 +103,8 @@
     margin-right: var(--mb-0-25);
   }
   
-  .login-forgot-password{
-    color: var(--text-color);
-  }
-
-  login-forgot-password-link{
-    color: var(--text-color);
+  .login-forgot-password a{
+    color: var(--title-color);
   }
 
   @media (min-width: 1113px) {
