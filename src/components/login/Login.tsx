@@ -1,6 +1,8 @@
 // src/auth/Login.tsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import loginBgImage from '../../assets/img/login-bg.jpg';
 import loginLogo from '../../assets/img/VGU-logo.png';
 import './Login.css'; // Import the CSS file
@@ -9,10 +11,29 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+  // const history = useHistory();
+
+  const isValidCredentials = () => {
+    // Your logic to validate credentials (e.g., comparing with predefined values)
+    // Return true if credentials are valid, otherwise return false
+    const sampleEmail = "admin@vgu.com";
+    const samplePassword = "admin123";
+  
+    return email === sampleEmail && password === samplePassword;
+  };
 
   const handleLogin = () => {
-    // Add your authentication logic here
-    // For simplicity, we're just redirecting to a dashboard page
+    // Check if entered credentials match the sample credentials
+    if (isValidCredentials()) {
+      // Logic for successful login, e.g., redirect to dashboard
+      // history.push('/dashboard');
+      console.log('Successfully logged in');
+    } else {
+      // Handle unsuccessful login with a toast notification
+      toast.error('Invalid email or password. Please try again.');
+    }
+
+
   };
 
   return (
@@ -72,6 +93,7 @@ const Login: React.FC = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
