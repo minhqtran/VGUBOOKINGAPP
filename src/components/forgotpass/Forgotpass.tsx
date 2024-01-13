@@ -16,7 +16,6 @@ const ForgotPass: React.FC = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(value);
   };
-
   const handleSendRecoveryRequest = () => {
     // Check if the entered email has a valid format
     if (!isValidEmail(email)) {
@@ -28,6 +27,7 @@ const ForgotPass: React.FC = () => {
       toast.success("Recovery request sent successfully!");
     }
   };
+
 
   return (
     <div className="grid wide forgot-password-container">

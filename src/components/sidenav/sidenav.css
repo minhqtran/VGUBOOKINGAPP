@@ -1,0 +1,84 @@
+.sidenav-logo-name-container {
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    background-color: #fff; /* Adjust the background color as needed */
+    border-right: 1px solid #f0f0f0; /* Border between logo and menu */
+    padding: 16px;
+  }
+  
+  .sidenav-logo {/* Adjust the width of your logo */
+    height: 40px; /* Adjust the height of your logo */
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
+  
+  .sidenav-app-name {
+    font-size: 14px; /* Adjust the font size as needed */
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .parent-container {
+    display: flex;
+    min-height: 100vh; /* Ensure the parent container has at least 100vh height */
+  }
+  
+  .ant-layout-sider {
+    height: 100%;
+    position: fixed;
+    left: 0;
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    padding: 12px;
+    position: fixed;
+    bottom: 0;
+    width: 250px;
+    height: 100px;
+    background-color: #fff; /* Adjust based on your design */
+    border-top: 1px solid #ccc; /* Adjust based on your design */
+  }
+  
+  .profile-user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-user-info i{
+    color: var(--title-color)
+  }
+  
+  .user-icon {
+    width: 40px; /* Adjust based on your icon size */
+    height: 40px; /* Adjust based on your icon size */
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .sidenav-profile-icon{
+    color: var(--title-color);
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  
+  .user-role {
+    font-size: 12px;
+  }
+  
+  .user-email {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #555; /* Adjust based on your design */
+  }
