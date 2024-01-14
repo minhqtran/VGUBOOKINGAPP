@@ -1,34 +1,62 @@
-.sidenav-logo-name-container {
+
+
+.sider-container {
     display: flex;
-    flex-direction: column;
-    height: 80px;
+    height: 100vh;
+    color: var(--container-color);
+  }
+  
+  .sider-logo-name-container {
+    height: max-content;
     background-color: #fff; /* Adjust the background color as needed */
     border-right: 1px solid #f0f0f0; /* Border between logo and menu */
     padding: 16px;
   }
   
-  .sidenav-logo {/* Adjust the width of your logo */
-    height: 40px; /* Adjust the height of your logo */
+  .sider-logo {/* Adjust the width of your logo */
+    height: 60px; /* Adjust the height of your logo */
     object-fit: contain;
-    margin-bottom: 8px;
+    margin: 0 0 8px 12px;
   }
   
-  .sidenav-app-name {
-    font-size: 14px; /* Adjust the font size as needed */
-    font-weight: bold;
+  .sider-app-name {
+    font-size: var(--h3-font-size); /* Adjust the font size as needed */
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
     text-align: center;
+    margin-bottom: var(--mb-1)
   }
 
-  .parent-container {
+
+  .sider-menu-bar{
+    height: 100%;
     display: flex;
-    min-height: 100vh; /* Ensure the parent container has at least 100vh height */
+    flex-direction: column;
+    font-size: var(--normal-font-size);
+    width: 250px;
+    
+  }
+
+
+
+
+
+  /* .ant-menu-item{
+    color: var(--text-color);
+  }
+
+  .ant-menu-icon{
+    color: var(--title-color)
+  }
+
+  .ant-menu-item-icon {
+    color: var(--title-color); 
   }
   
-  .ant-layout-sider {
-    height: 100%;
-    position: fixed;
-    left: 0;
-  }
+  .ant-menu-item {
+    color: var(--title-color); 
+  } */
+
 
   .profile-section {
     display: flex;
