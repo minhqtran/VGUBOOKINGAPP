@@ -1,25 +1,25 @@
 
 
-.sider-container {
+.sidenav-container {
     display: flex;
     height: 100vh;
     color: var(--container-color);
   }
   
-  .sider-logo-name-container {
+  .sidenav-logo-name-container {
     height: max-content;
     background-color: #fff; /* Adjust the background color as needed */
     border-right: 1px solid #f0f0f0; /* Border between logo and menu */
     padding: 16px;
   }
   
-  .sider-logo {/* Adjust the width of your logo */
+  .sidenav-logo {/* Adjust the width of your logo */
     height: 60px; /* Adjust the height of your logo */
     object-fit: contain;
     margin: 0 0 8px 12px;
   }
   
-  .sider-app-name {
+  .sidenav-app-name {
     font-size: var(--h3-font-size); /* Adjust the font size as needed */
     font-weight: var(--font-semi-bold);
     color: var(--title-color);
@@ -28,85 +28,67 @@
   }
 
 
-  .sider-menu-bar{
+  .sidenav-menu-bar{
     height: 100%;
     display: flex;
     flex-direction: column;
     font-size: var(--normal-font-size);
-    width: 250px;
+    width: 300px;
     
   }
 
-
-
-
-
-  /* .ant-menu-item{
-    color: var(--text-color);
-  }
-
-  .ant-menu-icon{
-    color: var(--title-color)
-  }
-
-  .ant-menu-item-icon {
-    color: var(--title-color); 
-  }
-  
-  .ant-menu-item {
-    color: var(--title-color); 
-  } */
-
-
-  .profile-section {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    padding: 12px;
-    position: fixed;
+  .sidenav-profile-section {
+    background-color: var(--container-color); 
+    padding: 16px;
+    position: absolute;
     bottom: 0;
-    width: 250px;
+    width: 300px;
     height: 100px;
-    background-color: #fff; /* Adjust based on your design */
-    border-top: 1px solid #ccc; /* Adjust based on your design */
+    border-top: 1px solid #ccc;
   }
   
-  .profile-user-info {
+  .sidenav-profile-section-wrapper {
     display: flex;
     align-items: center;
   }
-
-  .profile-user-info i{
-    color: var(--title-color)
-  }
   
-  .user-icon {
-    width: 40px; /* Adjust based on your icon size */
-    height: 40px; /* Adjust based on your icon size */
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-  
-  .sidenav-profile-icon{
+  .sidenav-profile-section-wrapper i{
+    font-size: 32px;
     color: var(--title-color);
   }
-
-  .user-details {
+  
+  .sidenav-profile-user-info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: var(--normal-font-size);
   }
   
-  .user-name {
-    font-weight: bold;
+  .sidenav-user-details {
+    display: flex;
+    justify-content: space-between;
   }
   
-  .user-role {
-    font-size: 12px;
+  .sidenav-user-name {
+    margin-right: 8px;
+    font-weight: var(--font-semi-bold);
+    line-height: 24px;
+    color: var(--title-color);
+    display: flex;
+    align-self: center;
+  }
+
+  .sidenav-user-role{
+    color: #A800E3;
+    border-radius: 5px;
+    border: 1px solid #A800E3;
+    padding: 2px 8px;
+    width: max-content;
+    line-height: 24px;
+    font-weight: var(--font-semi-bold);
   }
   
-  .user-email {
+  .sidenav-user-email {
     margin-top: 8px;
-    font-size: 12px;
-    color: #555; /* Adjust based on your design */
+    line-height: 24px;
   }
