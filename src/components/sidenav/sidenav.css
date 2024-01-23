@@ -4,12 +4,17 @@
     display: flex;
     height: 100vh;
     color: var(--container-color);
+    
   }
+
+.ant-layout-sider-children{
+  border-right: 1px solid var(--border-color);
+}
   
   .sidenav-logo-name-container {
     height: max-content;
     background-color: #fff; /* Adjust the background color as needed */
-    border-right: 1px solid #f0f0f0; /* Border between logo and menu */
+    border-right: 1px solid #f0f0f0;
     padding: 16px;
   }
   
@@ -44,7 +49,7 @@
     bottom: 0;
     width: 300px;
     height: 100px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--border-color);
   }
   
   .sidenav-profile-section-wrapper {
@@ -53,7 +58,7 @@
   }
   
   .sidenav-profile-section-wrapper i{
-    font-size: 32px;
+    font-size: var(--h2-font-size);
     color: var(--title-color);
   }
   
@@ -62,6 +67,7 @@
     flex-direction: column;
     margin-left: 12px;
     font-size: var(--normal-font-size);
+    margin-right: var(--mb-0-5);
   }
   
   .sidenav-user-details {
@@ -81,7 +87,7 @@
   .sidenav-user-role{
     color: #A800E3;
     border-radius: 5px;
-    border: 1px solid #A800E3;
+    border: 2px solid #A800E3;
     padding: 2px 8px;
     width: max-content;
     line-height: 24px;

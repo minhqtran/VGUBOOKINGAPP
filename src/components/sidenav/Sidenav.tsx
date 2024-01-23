@@ -110,15 +110,21 @@ const Sidenav: React.FC = () => {
           <div className="sidenav-profile-section">
             <div className="sidenav-profile-section-wrapper">
                 <i className="bx bxs-user"></i>
-              <div className="sidenav-profile-user-info">
-                <div className="sidenav-user-details">
-                  <div className="sidenav-user-name">Hai Cao Xuan</div>
-                  <div className="sidenav-user-role">Admin</div>
+                <div className="sidenav-profile-user-info">
+                  <div className="sidenav-user-details">
+                    <div className="sidenav-user-name">Hai Cao Xuan</div>
+                    <div className="sidenav-user-role">Admin</div>
+                  </div>
+                  <div className="sidenav-user-email">
+                    16140@student.vgu.edu.vn
+                  </div>
                 </div>
-                <div className="sidenav-user-email">
-                  16140@student.vgu.edu.vn
+                <div className="sidenav-signout-btn">
+                  <Link to="/login">
+                    <i className='bx bx-log-out'></i></Link>
                 </div>
-              </div>
+                  
+                
             </div>
           </div>
         </Menu>
