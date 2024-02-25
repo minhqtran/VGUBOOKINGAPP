@@ -12736,19 +12736,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Quynh.BH\\.nuget\\packages\\": {}
+    "C:\\Users\\haihe\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+      "projectUniqueName": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\vba\\vgu-booking-app\\API\\BookingApp.csproj",
       "projectName": "BookingApp",
-      "projectPath": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
-      "packagesPath": "C:\\Users\\Quynh.BH\\.nuget\\packages\\",
-      "outputPath": "D:\\System\\VGUBOOKINGAPP\\API\\obj\\",
+      "projectPath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\vba\\vgu-booking-app\\API\\BookingApp.csproj",
+      "packagesPath": "C:\\Users\\haihe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\vba\\vgu-booking-app\\API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Quynh.BH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\haihe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12756,6 +12761,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -12918,6 +12924,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
