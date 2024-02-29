@@ -40,6 +40,7 @@ namespace BookingApp.Services
         Task<OperationResult> ForgotUsername(string email);
         Task<OperationResult> LoginAsync(UserForLoginDto loginDto);
         Task<OperationResult> LoginWithlineAccountAsync(string UID);
+        Task<OperationResult> LoginWithLdapAsync(string LdapName);
         Task<object> CheckLoginAuth(UserForLoginDto loginDto);
         Task<bool> CheckIsLocalAccount(UserForLoginDto loginDto);
         Task<OperationResult> LoginAsync(decimal ID);
@@ -48,13 +49,13 @@ namespace BookingApp.Services
     public class AuthService : IAuthService
     {
         private readonly IRepositoryBase<XAccount> _repo;
+        private readonly IRepositoryBase<User> _repoUser;
         private readonly IRepositoryBase<CodeType> _repoCodeType;
         private readonly IRepositoryBase<XAccountGroup> _repoXAccountGroup;
         private readonly IRepositoryBase<Employee> _repoEmployee;
         private readonly IRepositoryBase<RefreshToken> _repoRefreshToken;
         private readonly IUnitOfWork _unitOfWork;
         private readonly JwtSettings _jwtSettings;
-        private readonly IEmailService _emailService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
         private readonly TokenValidationParameters _tokenValidationParameters;
@@ -64,13 +65,13 @@ namespace BookingApp.Services
 
         public AuthService(
             IRepositoryBase<XAccount> repo,
+            IRepositoryBase<User> repoUser,
             IRepositoryBase<CodeType> repoCodeType,
             IRepositoryBase<XAccountGroup> repoXAccountGroup,
             IRepositoryBase<Employee> repoEmployee,
             IRepositoryBase<RefreshToken> repoRefreshToken,
             IUnitOfWork unitOfWork,
             JwtSettings jwtSettings,
-            IEmailService emailService,
             IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
             TokenValidationParameters tokenValidationParameters,
@@ -79,13 +80,13 @@ namespace BookingApp.Services
             )
         {
             _repo = repo;
+            _repoUser = repoUser;
             _repoCodeType = repoCodeType;
             _repoXAccountGroup = repoXAccountGroup;
             _repoEmployee = repoEmployee;
             _repoRefreshToken = repoRefreshToken;
             _unitOfWork = unitOfWork;
             _jwtSettings = jwtSettings;
-            _emailService = emailService;
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
             _tokenValidationParameters = tokenValidationParameters;
@@ -463,20 +464,20 @@ namespace BookingApp.Services
             string urlRedirect = $"{_configuration["MailSettings:AngularUrl"]}/reset-password?token={tokenValue}";
             html = html.Replace("{{HREF}}", urlRedirect);
             
-            var check = await  _emailService.SendAsync(email, "Forgot Password", html);
-            if (check == "")
+            //var check = await  _emailService.SendAsync(email, "Forgot Password", html);
+            //if (check == "")
             return new OperationResult
             {
                 Success = true,
                 StatusCode = HttpStatusCode.OK,
                 Data = null
             };
-            return new OperationResult
-            {
-                Success = false,
-                StatusCode = HttpStatusCode.OK,
-                Data = check
-            };
+            //return new OperationResult
+            //{
+            //    Success = false,
+            //    StatusCode = HttpStatusCode.OK,
+            //    Data = check
+            //};
         }
 
         public async Task<OperationResult> ForgotPassword(string email)
@@ -531,20 +532,20 @@ namespace BookingApp.Services
             html = html.Replace("{{HREF}}", urlRedirect);
             html = html.Replace("{{USERNAME}}", account.Uid);
 
-            var check = await _emailService.SendAsync(email, "Forgot Username", html);
-            if (check == "")
+            //var check = await _emailService.SendAsync(email, "Forgot Username", html);
+            //if (check == "")
                 return new OperationResult
                 {
                     Success = true,
                     StatusCode = HttpStatusCode.OK,
                     Message = "Success! An email has been sent. Please check your inbox!"
                 };
-            return new OperationResult
-            {
-                Success = false,
-                StatusCode = HttpStatusCode.OK,
-                Data = check
-            };
+            //return new OperationResult
+            //{
+            //    Success = false,
+            //    StatusCode = HttpStatusCode.OK,
+            //    Data = check
+            //};
         }
 
         public async Task<object> CheckLoginAuth(UserForLoginDto loginDto)
@@ -615,7 +616,56 @@ namespace BookingApp.Services
             return await GenerateOperationResultForUserAsync(account, "");
         }
 
-       
+        public async Task<OperationResult> LoginWithLdapAsync(string LdapName)
+        {
+            var account = await _repoUser.FindAll(x => x.Ldap_Name == LdapName && x.Status).FirstOrDefaultAsync();
+            return await GenerateOperationResultForUserWithLdapAsync(account);
+        }
+
+        private async Task<OperationResult> GenerateOperationResultForUserWithLdapAsync(User user)
+        {
+            var claims = new[]
+            {
+                            new Claim(ClaimTypes.NameIdentifier, user.ID.ToString()),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                        };
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.Add(_jwtSettings.TokenLifetime),
+                SigningCredentials =
+                new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenValue = tokenHandler.WriteToken(token);
+            //var refreshToken = new RefreshToken
+            //{
+            //    JwtId = token.Id,
+            //    AccountId = user.ID.ToInt(),
+            //    CreationDate = DateTime.Now,
+            //    ExpiryDate = DateTime.Now.AddMonths(6),
+            //    Token = tokenValue
+            //};
+
+            //_repoRefreshToken.Add(refreshToken);
+            //await _unitOfWork.SaveChangeAsync();
+            var userResponse = _mapper.Map<UserDto>(user);
+            return new OperationResult
+            {
+                StatusCode = HttpStatusCode.OK,
+                Success = true,
+                Data = new
+                {
+                    Token = tokenValue,
+                    //RefreshToken = refreshToken.JwtId,
+                    User = userResponse
+                }
+            };
+        }
+
 
     }
 }

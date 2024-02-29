@@ -136,6 +136,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "Novell.Directory.Ldap.NETStandard": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.21.1, )"

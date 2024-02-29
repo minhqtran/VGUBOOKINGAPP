@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "q1Tqkxqb9weSE7ws2Vnw4+eASdb6IkSHjPrJwAxp+dJLJy3ijD1346yFAxVImPFbMZU1jxPkIKiMSgE7GV2hHg==",
+  "dgSpecHash": "7FdQLQXaTZYOY+0nt+03DErXkGThK2rtZRrrZ2g300fYOjlAQHfboGJzf4mR3yMV3ISfp3BxnMDHEVY5qcijvQ==",
   "success": true,
   "projectFilePath": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
   "expectedPackageFiles": [
@@ -122,6 +122,7 @@
     "C:\\Users\\Quynh.BH\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Quynh.BH\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Quynh.BH\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\Quynh.BH\\.nuget\\packages\\novell.directory.ldap.netstandard\\3.6.0\\novell.directory.ldap.netstandard.3.6.0.nupkg.sha512",
     "C:\\Users\\Quynh.BH\\.nuget\\packages\\oracle.entityframeworkcore\\5.21.1\\oracle.entityframeworkcore.5.21.1.nupkg.sha512",
     "C:\\Users\\Quynh.BH\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.70\\oracle.manageddataaccess.core.3.21.70.nupkg.sha512",
     "C:\\Users\\Quynh.BH\\.nuget\\packages\\owin\\1.0.0\\owin.1.0.0.nupkg.sha512",

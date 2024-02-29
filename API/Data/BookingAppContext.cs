@@ -24,6 +24,7 @@ namespace BookingApp.Data
             _contextAccessor = contextAccessor;
         }
         public virtual DbSet<Building> Buildings { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +37,14 @@ namespace BookingApp.Data
                    .HasColumnName("Building_Guid")
                    .HasMaxLength(50);
                 entity.ToTable("Building");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.Ldap_Name)
+                   .HasColumnName("Ldap_name")
+                   .HasMaxLength(50);
+                entity.ToTable("User");
             });
 
             OnModelCreatingPartial(modelBuilder);

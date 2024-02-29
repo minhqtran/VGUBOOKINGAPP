@@ -21,6 +21,13 @@ namespace BookingApp.Controllers
         {
             return Ok(await _service.GetSitesByAccount());
         }
+
+        [HttpGet]
+        public async Task<ActionResult> CheckRoom()
+        {
+            return Ok(await _service.GetSitesByAccount());
+        }
+
         [HttpPost]
         public async Task<ActionResult> DeleteUploadFile([FromForm] decimal key)
         {
@@ -32,11 +39,6 @@ namespace BookingApp.Controllers
             return Ok(await _service.AddFormAsync(model));
         }
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateFormAsync([FromForm] BuildingDto model)
-        {
-            return Ok(await _service.UpdateFormAsync(model));
-        }
 
         [HttpGet]
         public async Task<ActionResult> GetAllAsync()
