@@ -1,14 +1,18 @@
 // RoomBookingList.tsx
 
 import React, { useState } from 'react';
-import { Layout, Table, Button, Modal } from 'antd';
+import { Layout, Table, Button, Modal, Form, Input, Select } from 'antd';
 import Sidenav from '../sidenav/Sidenav';
 import roomBookingData from './roomBookingData'; // Import sample room booking data
 import './roombookinglist.css'; // Import CSS for styling
 
 const { Content } = Layout;
+const { Option } = Select;
 
 const RoomBookingList: React.FC = () => {
+  const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
+  const [selectedBooking, setSelectedBooking] = useState<any>(null);
+
   const columns = [
     {
       title: 'No',
@@ -71,48 +75,81 @@ const RoomBookingList: React.FC = () => {
   const [isDeleteConfirmationModalVisible, setIsDeleteConfirmationModalVisible] =
     useState<boolean>(false);
 
-  const handleEdit = (record: any) => {
-    // Handle edit logic
-    console.log('Edit', record);
-  };
+    const handleEdit = (record: any) => {
+      setSelectedBooking(record);
+      setIsEditModalVisible(true);
+    };
 
-  const handleDelete = (record: any) => {
-    // Handle delete logic
-    setSelectedBooking(record);
-    setIsDeleteConfirmationModalVisible(true);
-  };
+    const handleSaveEdit = () => {
+      // Handle save edited booking logic
+      setIsEditModalVisible(false);
+    };
 
-  const handleConfirmDelete = () => {
-    // Handle confirm delete logic
-    console.log('Delete', selectedBooking);
-    setIsDeleteConfirmationModalVisible(false);
-  };
+    const handleDelete = (record: any) => {
+      // Handle delete logic
+      setSelectedBooking(record);
+      setIsDeleteConfirmationModalVisible(true);
+    };
 
-  const handleCancelDelete = () => {
-    setIsDeleteConfirmationModalVisible(false);
-  };
+    const handleConfirmDelete = () => {
+      // Handle confirm delete logic
+      console.log('Delete', selectedBooking);
+      setIsDeleteConfirmationModalVisible(false);
+    };
 
-  return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sidenav />
+    const handleCancelDelete = () => {
+      setIsDeleteConfirmationModalVisible(false);
+    };
 
-      <Layout className="site-layout">
-        <Content style={{ margin: '16px' }}>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+    return (
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sidenav />
+  
+        <Layout className="site-layout">
+          <Content style={{ margin: '16px' }}>
+            {/* ... rest of the code ... */}
+  
             <Table columns={columns} dataSource={roomBookingData} rowKey="number" />
+  
+            {/* Edit Booking Modal */}
             <Modal
-              title="Confirm Delete"
-              visible={isDeleteConfirmationModalVisible}
-              onOk={handleConfirmDelete}
-              onCancel={handleCancelDelete}
+              title="Edit Booking"
+              visible={isEditModalVisible}
+              onCancel={() => setIsEditModalVisible(false)}
+              onOk={handleSaveEdit}
             >
-              <p>Are you sure you want to delete this booking?</p>
+              {/* Form for editing booking */}
+              <Form>
+                <Form.Item label="Number">
+                  <Input value={selectedBooking?.number} disabled />
+                </Form.Item>
+                <Form.Item label="Reason of Booking">
+                  <Input value={selectedBooking?.reason} />
+                </Form.Item>
+                <Form.Item label="Location">
+                  <Input value={selectedBooking?.location} />
+                </Form.Item>
+                <Form.Item label="Date">
+                  <Input value={selectedBooking?.date} />
+                </Form.Item>
+                <Form.Item label="Time">
+                  <Input value={selectedBooking?.time} />
+                </Form.Item>
+                <Form.Item label="Status">
+                  <Select value={selectedBooking?.status} disabled>
+                    {/* Include options for different status values */}
+                    <Option value="accepted">Accepted</Option>
+                    <Option value="pending">Pending</Option>
+                    <Option value="rejected">Rejected</Option>
+                    <Option value="canceled">Canceled</Option>
+                  </Select>
+                </Form.Item>
+              </Form>
             </Modal>
-          </div>
-        </Content>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
-  );
+    );
 };
 
 export default RoomBookingList;
