@@ -14,6 +14,7 @@ namespace BookingApp.Helpers.AutoMapper
         public EFToDtoMappingProfile()
         {
             CreateMap<Building, BuildingDto>();
+            CreateMap<User, UserDto>();
         }
 
     }
