@@ -25,7 +25,7 @@ namespace BookingApp.Controllers
         [HttpGet]
         public async Task<ActionResult> CheckRoom()
         {
-            return Ok(await _service.GetSitesByAccount());
+            return Ok(await _service.CheckRoom());
         }
 
         [HttpPost]
@@ -59,13 +59,13 @@ namespace BookingApp.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(decimal id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
             return StatusCodeResult(await _service.DeleteAsync(id));
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetByIDAsync(decimal id)
+        public async Task<ActionResult> GetByIDAsync(int id)
         {
             return Ok(await _service.GetByIDAsync(id));
         }

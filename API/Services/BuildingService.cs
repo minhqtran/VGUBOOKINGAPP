@@ -28,6 +28,7 @@ namespace BookingApp.Services
         Task<OperationResult> AddFormAsync(BuildingDto model);
         Task<object> DeleteUploadFile(decimal key);
         Task<object> GetSitesByAccount();
+        Task<object> CheckRoom();
 
     }
     public class BuildingService : ServiceBase<Building, BuildingDto>, IBuildingService
@@ -86,6 +87,27 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
+        public override async Task<OperationResult> AddRangeAsync(List<BuildingDto> model)
+        {
+            var item = _mapper.Map<List<Building>>(model);
+            _repo.AddRange(item);
+            try
+            {
+                await _unitOfWork.SaveChangeAsync();
+                operationResult = new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = MessageReponse.AddSuccess,
+                    Success = true,
+                    Data = item
+                };
+            }
+            catch (Exception ex)
+            {
+                operationResult = ex.GetMessageError();
+            }
+            return operationResult;
+        }
         public override async Task<List<BuildingDto>> GetAllAsync()
         {
             var query = _repo.FindAll(x => x.Status).ProjectTo<BuildingDto>(_configMapper);
@@ -94,7 +116,7 @@ namespace BookingApp.Services
             return data;
 
         }
-        public override async Task<OperationResult> DeleteAsync(object id)
+        public override async Task<OperationResult> DeleteAsync(int id)
         {
             var item = _repo.FindByID(id);
             //item.CancelFlag = "Y";
@@ -117,7 +139,7 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
-
+       
         public async Task<object> LoadData(DataManager data, string farmGuid)
         {
             throw new NotImplementedException();
@@ -158,7 +180,11 @@ namespace BookingApp.Services
             throw new ArgumentException();
         }
 
+        public async Task<object> CheckRoom()
+        {
+            var query = _repo.FindAll().ToListAsync();
 
-        
+            return query;
+        }
     }
 }

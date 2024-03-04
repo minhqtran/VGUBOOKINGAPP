@@ -25,6 +25,7 @@ namespace BookingApp.Data
         }
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,6 +46,13 @@ namespace BookingApp.Data
                    .HasColumnName("Ldap_name")
                    .HasMaxLength(50);
                 entity.ToTable("User");
+            });
+            modelBuilder.Entity<Room>(entity =>
+            {
+                entity.Property(e => e.RoomGuid)
+                   .HasColumnName("Room_Guid")
+                   .HasMaxLength(50);
+                entity.ToTable("Room");
             });
 
             OnModelCreatingPartial(modelBuilder);

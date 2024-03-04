@@ -27,7 +27,6 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Web;
 using Novell.Directory.Ldap;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 using System.DirectoryServices;
 using Novell.Directory.Ldap.Utilclass;
 using System.Text.RegularExpressions;
