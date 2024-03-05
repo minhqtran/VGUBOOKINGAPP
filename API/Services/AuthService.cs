@@ -618,7 +618,7 @@ namespace BookingApp.Services
 
         public async Task<OperationResult> LoginWithLdapAsync(string LdapName)
         {
-            var account = await _repoUser.FindAll(x => x.Ldap_Name == LdapName && x.Status).FirstOrDefaultAsync();
+            var account = await _repoUser.FindAll(x => x.LdapName == LdapName && x.Status).FirstOrDefaultAsync();
             return await GenerateOperationResultForUserWithLdapAsync(account);
         }
 

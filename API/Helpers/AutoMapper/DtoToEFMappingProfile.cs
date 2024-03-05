@@ -16,6 +16,7 @@ namespace BookingApp.Helpers.AutoMapper
             CreateMap<BuildingDto, Building>();
             CreateMap<UserDto, User>();
             CreateMap<RoomDto, Room>();
+            CreateMap<BookingDto, Booking>();
         }
     }
 }

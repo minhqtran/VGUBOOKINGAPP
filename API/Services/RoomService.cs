@@ -59,21 +59,21 @@ namespace BookingApp.Services
         public async Task<List<RoomDto>> SearchRoom(RoomFilter roomFilter)
         {
             var query = _repo.FindAll().ProjectTo<RoomDto>(_configMapper);
-            if (!string.IsNullOrWhiteSpace(roomFilter.BuildingGUID))
+            if (!string.IsNullOrWhiteSpace(roomFilter.BuildingGuid))
             {
-                query = query.Where(x => x.BuildingGUID == roomFilter.BuildingGUID);
+                query = query.Where(x => x.BuildingGuid == roomFilter.BuildingGuid);
             }
-            if (!string.IsNullOrWhiteSpace(roomFilter.FloorGUID))
+            if (!string.IsNullOrWhiteSpace(roomFilter.FloorGuid))
             {
-                query = query.Where(x => x.FloorGUID == roomFilter.FloorGUID);
+                query = query.Where(x => x.FloorGuid == roomFilter.FloorGuid);
             }
-            if (!string.IsNullOrWhiteSpace(roomFilter.CampusGUID))
+            if (!string.IsNullOrWhiteSpace(roomFilter.CampusGuid))
             {
-                query = query.Where(x => x.CampusGUID == roomFilter.CampusGUID);
+                query = query.Where(x => x.CampusGuid == roomFilter.CampusGuid);
             }
-            if (!string.IsNullOrWhiteSpace(roomFilter.RoomGUID))
+            if (!string.IsNullOrWhiteSpace(roomFilter.RoomGuid))
             {
-                query = query.Where(x => x.RoomGuid == roomFilter.RoomGUID);
+                query = query.Where(x => x.RoomGuid == roomFilter.RoomGuid);
             }
             var data = await query.ToListAsync();
             return data;

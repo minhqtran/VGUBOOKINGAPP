@@ -13,7 +13,7 @@ namespace BookingApp.Models
         public string Department { get; set; }
         public string Role { get; set; }
         public int StaffCode { get; set; }
-        public string Ldap_Name { get; set; }
+        public string LdapName { get; set; }
         public DateTime? CreateDate { get; set; }
         public int CreateBy { get; set; }
         //public DateTime? UpdateDate { get; set; }

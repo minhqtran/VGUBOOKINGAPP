@@ -79,7 +79,7 @@ namespace BookingApp.Services
         }
         public async Task<OperationResult> CheckExistLdap(string ldapName)
         {
-            var item = await _repo.FindAll(x => x.Ldap_Name == ldapName && x.Status).FirstOrDefaultAsync();
+            var item = await _repo.FindAll(x => x.LdapName == ldapName && x.Status).FirstOrDefaultAsync();
             if (item != null)
             {
                 return new OperationResult { StatusCode = HttpStatusCode.OK, Message = "The account already existed!", Success = true , Data = item };
