@@ -8,6 +8,7 @@ using BookingApp.Helpers;
 using BookingApp.Models;
 using BookingApp.Services.Base;
 using Microsoft.EntityFrameworkCore;
+using Renci.SshNet.Messages;
 using Syncfusion.JavaScript;
 using System;
 using System.Collections.Generic;
@@ -32,18 +33,21 @@ namespace BookingApp.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
+        private readonly IMailExtension _mailService;
         public BookingService(
                        IRepositoryBase<Booking> repo,
                                   IUnitOfWork unitOfWork,
                                              IMapper mapper,
-                                                        MapperConfiguration configMapper
-                       )
+                                                        MapperConfiguration configMapper,
+                                                        IMailExtension mailService)
+                       
             : base(repo, unitOfWork, mapper, configMapper)
         {
             _repo = repo;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configMapper = configMapper;
+            _mailService = mailService;
         }
 
         public override async Task<List<BookingDto>> GetAllAsync()
@@ -69,6 +73,14 @@ namespace BookingApp.Services
             if (!string.IsNullOrEmpty(bookingFilter.RoomGuid))
             {
                 query = query.Where(x => x.RoomGuid == bookingFilter.RoomGuid);
+            }
+            if (bookingFilter.StartDate != null)
+            {
+                query = query.Where(x => x.StartDate.Value.Day == bookingFilter.StartDate.Value.Day);
+            }
+            if (bookingFilter.EndDate != null)
+            {
+                query = query.Where(x => x.EndDate.Value.Day == bookingFilter.EndDate.Value.Day);
             }
             // add more filter here
             var data = await query.ToListAsync();
@@ -97,6 +109,10 @@ namespace BookingApp.Services
             item.BookingTimeS = item.StartDate.ToString("HH:mm"); // convert start date to string
             item.BookingTimeE = item.EndDate.ToString("HH:mm"); // convert end date to string
             _repo.Add(item);
+            var email = "naccut922@gmail.com"; // should be changed to user's email
+            var subject = Constants.Mailling.Subject.Create;
+            var message = Constants.Mailling.Content.Create(item.BookingGuid, item.StartDate, item.EndDate, item.RoomGuid, item.CampusGuid);
+            await _mailService.SendEmailAsync(email, subject, message);
             await _unitOfWork.SaveChangeAsync();
 
             operationResult = new OperationResult
@@ -115,6 +131,7 @@ namespace BookingApp.Services
 
 
         }
+
         public async Task<OperationResult> UpdateStatus(int id, decimal bookingStatus) // function for admin to change booking status
         {
             var item = _repo.FindByID(id);
@@ -136,7 +153,43 @@ namespace BookingApp.Services
                 operationResult = ex.GetMessageError();
             }
             return operationResult;
-        }   
+        }
+        public override async Task<OperationResult> UpdateAsync(BookingDto model)
+        {
+            var item = _mapper.Map<Booking>(model);
+            var conflictBooking = ConflictChecking(model);
+            if (conflictBooking.Result.Count > 0)
+            {
+                return new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK, // ?? should it be ok ?
+                    Message = MessageReponse.BookingErrorTimeConflict,
+                    Success = false,
+                    Data = conflictBooking.Result
+                };
+            }
+            item.BookingStatus = BookingStatus.Pending; //set booking status to pending
+            item.BookingTimeS = item.StartDate.ToString("HH:mm"); // convert start date to string
+            item.BookingTimeE = item.EndDate.ToString("HH:mm"); // convert end date to string
+            _repo.Update(item);
+
+            try
+            {
+                await _unitOfWork.SaveChangeAsync();
+                operationResult = new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = MessageReponse.UpdateSuccess,
+                    Success = true,
+                    Data = model
+                };
+            }
+            catch (Exception ex)
+            {
+                operationResult = ex.GetMessageError();
+            }
+            return operationResult;
+        }
         public async Task<List<BookingDto>> ConflictChecking(BookingDto model) //Logic checking for Room Booking
         {
             var query = _repo.FindAll().ProjectTo<BookingDto>(_configMapper);
@@ -147,8 +200,10 @@ namespace BookingApp.Services
                 x.BuildingGuid == item.BuildingGuid && // check building conflict
                 x.FloorGuid == item.FloorGuid && // check floor conflict
                 x.RoomGuid == item.RoomGuid && // check room conflict
+                item.StartDate < item.EndDate &&  // check if start date is before end date
                 (x.StartDate <= item.StartDate && item.StartDate < x.EndDate || // check start date conflict, if the start date of the new booking is between the start and end date of the existing booking
-                x.StartDate < item.EndDate && item.EndDate <= x.EndDate)) // check end date conflict, if the end date of the new booking is between the start and end date of the existing booking
+                x.StartDate < item.EndDate && item.EndDate <= x.EndDate) 
+                ) // check end date conflict, if the end date of the new booking is between the start and end date of the existing booking
                     .ToListAsync();
             return await conflictBooking;
         }
@@ -175,5 +230,9 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
+        //public async void SendMailAsync(string email, string subject, string message)
+        //{
+        //        await _mailService.SendEmailAsync(email, subject, message);
+        //}
     }
 }

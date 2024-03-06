@@ -8,6 +8,8 @@ namespace BookingApp.DTO.Filter
         public string BuildingGuid { get; set; }
         public string FloorGuid { get; set; }
         public string RoomGuid { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
     }
 }
