@@ -5,6 +5,8 @@ using BookingApp.Services;
 using Syncfusion.JavaScript;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using BookingApp.DTO.auth;
 
 namespace BookingApp.Controllers
 {
@@ -34,8 +36,12 @@ namespace BookingApp.Controllers
         {
             return StatusCodeResult(await _service.UpdateAsync(model));
         }
-
-
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> LoginAsync([FromBody] UserForLoginDto model)
+        {
+            return StatusCodeResult(await _service.LoginAsync(model));
+        }
         [HttpDelete]
         public async Task<ActionResult> DeleteAsync(int id)
         {
@@ -43,7 +49,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetByIDAsync(decimal id)
+        public async Task<ActionResult> GetByIDAsync(int id)
         {
             return Ok(await _service.GetByIDAsync(id));
         }

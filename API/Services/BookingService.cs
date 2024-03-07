@@ -85,7 +85,7 @@ namespace BookingApp.Services
             // add more filter here
             var data = await query.ToListAsync();
             return data;
-
+            
 
         }
         public override async Task<OperationResult> AddAsync(BookingDto model) 

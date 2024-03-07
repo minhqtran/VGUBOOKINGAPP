@@ -19,12 +19,16 @@ using System.Threading.Tasks;
 using Syncfusion.JavaScript;
 using Syncfusion.JavaScript.DataSources;
 using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
+using BookingApp.DTO.Filter;
+using BookingApp.DTO.auth;
 
 namespace BookingApp.Services
 {
     public interface IUserService : IServiceBase<User, UserDto>
     {
         Task<OperationResult> CheckExistLdap(string ldapName);
+        Task<OperationResult> LoginAsync(UserForLoginDto userForLoginDto);
+        Task<List<UserDto>> SearchUser(UserFilter userFilter);
     }
     public class UserService : ServiceBase<User, UserDto>, IUserService
     {
@@ -34,14 +38,15 @@ namespace BookingApp.Services
         private readonly MapperConfiguration _configMapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IWebHostEnvironment _currentEnvironment;
-
+        private readonly IAuthService _authService;
         public UserService(
             IRepositoryBase<User> repo,
             IUnitOfWork unitOfWork,
             IMapper mapper,
             MapperConfiguration configMapper,
             IHttpContextAccessor httpContextAccessor,
-            IWebHostEnvironment currentEnvironment
+            IWebHostEnvironment currentEnvironment,
+            IAuthService authService
             )
             : base(repo, unitOfWork, mapper, configMapper)
         {
@@ -51,6 +56,7 @@ namespace BookingApp.Services
             _configMapper = configMapper;
             _httpContextAccessor = httpContextAccessor;
             _currentEnvironment = currentEnvironment;
+            _authService = authService;
         }
 
         public override async Task<OperationResult> UpdateAsync(UserDto model)
@@ -82,7 +88,11 @@ namespace BookingApp.Services
             var item = await _repo.FindAll(x => x.LdapName == ldapName && x.Status).FirstOrDefaultAsync();
             if (item != null)
             {
-                return new OperationResult { StatusCode = HttpStatusCode.OK, Message = "The account already existed!", Success = true , Data = item };
+                return new OperationResult { 
+                    StatusCode = HttpStatusCode.OK, 
+                    Message = "The account already existed!", 
+                    Success = true ,
+                    Data = item };
             }
             operationResult = new OperationResult
             {
@@ -91,6 +101,85 @@ namespace BookingApp.Services
                 Data = item
             };
             return operationResult;
+        }
+        public override async Task<List<UserDto>> GetAllAsync()
+        {
+            var query = _repo.FindAll(x => x.Status).ProjectTo<UserDto>(_configMapper);
+
+            var data = await query.ToListAsync();
+            return data;
+        }
+        public override async Task<OperationResult> AddAsync(UserDto model)
+        {
+            try
+            {
+                var item = _mapper.Map<User>(model);
+                item.Status = true;
+                item.Password = item.Password.ToSha512();
+                item.LdapLogin = false;
+                item.Guid = Guid.NewGuid().ToString("N") + DateTime.Now.ToString("ssff").ToUpper();
+                _repo.Add(item);
+                await _unitOfWork.SaveChangeAsync();
+                operationResult = new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = MessageReponse.AddSuccess,
+                    Success = true,
+                    Data = item
+                };
+            }
+            catch (Exception ex)
+            {
+                operationResult = ex.GetMessageError();
+            }
+
+            return operationResult;
+        }
+
+        public override async Task<OperationResult> DeleteAsync(int id)
+        {
+            try
+            {
+                var item = await _repo.FindByIDAsync(id);
+                _repo.Remove(item);
+                await _unitOfWork.SaveChangeAsync();
+                operationResult = new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = MessageReponse.DeleteSuccess,
+                    Success = true,
+                    Data = item
+                };
+            }
+            catch (Exception ex)
+            {
+                operationResult = ex.GetMessageError();
+            }
+
+            return operationResult;
+        }
+        
+        public async Task<List<UserDto>> SearchUser(UserFilter userFilter)
+        {
+            var query = _repo.FindAll().ProjectTo<UserDto>(_configMapper);
+            if (!string.IsNullOrWhiteSpace(userFilter.Department))
+            {
+                query = query.Where(x => x.Department == userFilter.Department);
+            }
+            if (userFilter.Role != 0)
+            {
+                query = query.Where( x => x.Role == userFilter.Role);
+            }
+            if (userFilter.LDapLogin)
+            {
+                query = query.Where(x => x.LdapLogin == userFilter.LDapLogin);
+            }
+            var data = await query.ToListAsync();
+            return data;
+        }
+        public async Task<OperationResult> LoginAsync(UserForLoginDto userForLoginDto)
+        {
+            return await _authService.NewLoginAsync(userForLoginDto);
         }
     }
 }

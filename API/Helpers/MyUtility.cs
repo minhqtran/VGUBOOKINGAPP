@@ -82,5 +82,48 @@ namespace BookingApp.Helpers
                 }
             }
         }
+        public static string ToSha256(this string inputString)
+        {
+            SHA256 sha256 = SHA256.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(inputString + _Salt);
+            byte[] hash = sha256.ComputeHash(bytes);
+            return hash.GetStringFromHash();
+        }
+
+        public static string ToSha512(this string inputString)
+        {
+            SHA512 sha512 = SHA512.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(inputString + _Salt);
+            byte[] hash = sha512.ComputeHash(bytes);
+            return hash.GetStringFromHash();
+        }
+        public static bool VerifyHashedPassword(this string pass, string confirmPass)
+        {
+            byte[] array1 = Encoding.UTF8.GetBytes(pass);
+            byte[] array2 = Encoding.UTF8.GetBytes(confirmPass);
+            if (array1.Length != array2.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private static string GetStringFromHash(this byte[] hash)
+        {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                result.Append(hash[i].ToString("X2"));
+            }
+            return result.ToString();
+        }
+
     }
 }

@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "E:\\Intern\\VGUBOOKINGAPP\\API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\services\\ldapservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:services\\ldapservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\services\\buildingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:services\\buildingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\controllers\\mailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:controllers\\mailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|e:\\intern\\vgubookingapp\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B24E638-86FB-458E-8E9E-784F260B88F2}|BookingApp.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +30,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LdapService.cs",
+              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\LdapService.cs",
+              "RelativeDocumentMoniker": "Services\\LdapService.cs",
+              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\LdapService.cs",
+              "RelativeToolTip": "Services\\LdapService.cs",
+              "ViewState": "AQIAAMQAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T08:10:54.347Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -38,53 +56,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BuildingService.cs",
-              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\BuildingService.cs",
-              "RelativeDocumentMoniker": "Services\\BuildingService.cs",
-              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\BuildingService.cs",
-              "RelativeToolTip": "Services\\BuildingService.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAcwEAAAAAJAAAA",
+              "DocumentIndex": 4,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAYwCgAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T08:26:20.078Z",
+              "WhenOpened": "2024-03-07T08:24:53.321Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "BookingService.cs",
               "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\BookingService.cs",
               "RelativeDocumentMoniker": "Services\\BookingService.cs",
               "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\BookingService.cs",
               "RelativeToolTip": "Services\\BookingService.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAmwFoAAAAAAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACMAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T07:42:42.571Z",
+              "WhenOpened": "2024-03-07T08:12:23.456Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MailController.cs",
-              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Controllers\\MailController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MailController.cs",
-              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Controllers\\MailController.cs",
-              "RelativeToolTip": "Controllers\\MailController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAzAAAA",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\UserService.cs",
+              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\UserService.cs",
+              "RelativeToolTip": "Services\\UserService.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAAALMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T06:56:45.841Z"
+              "WhenOpened": "2024-03-07T06:47:29.239Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RoomController.cs",
-              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Controllers\\RoomController.cs",
-              "RelativeDocumentMoniker": "Controllers\\RoomController.cs",
-              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Controllers\\RoomController.cs",
-              "RelativeToolTip": "Controllers\\RoomController.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAQwBwAAAAwAAAA",
+              "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "E:\\Intern\\VGUBOOKINGAPP\\API\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AQIAAMUAAAAAAAAAAAAnwM0AAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-06T06:56:49.968Z"
+              "WhenOpened": "2024-03-07T07:45:50.149Z",
+              "EditorCaption": ""
             }
           ]
         }

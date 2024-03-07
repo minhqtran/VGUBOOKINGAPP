@@ -26,6 +26,7 @@ namespace BookingApp.Data
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
+        //public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

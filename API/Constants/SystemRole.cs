@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Constants
 {
-    public class SystemRole
+    public static class SystemRole
     {
-        public static string ADMIN = "AD";
-        public static string USER = "USER";
-        public static string OPERATOR = "OPER";
-        public static string STUDENT = "STU";
+        public static readonly decimal Admin = 1;
+        public static readonly decimal User = 2;
+        public static readonly decimal Operator = 3;
+        public static readonly decimal Guest = 4; 
 
     }
 }

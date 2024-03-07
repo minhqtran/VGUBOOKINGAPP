@@ -158,7 +158,7 @@ namespace BookingApp.Services
 
                             var nextEntry = searchResult.Next();
                             userInfo.Name = nextEntry.GetAttribute("Name").StringValue;
-                            userInfo.Role = SystemRole.USER;
+                            userInfo.Role = SystemRole.User;
                             userInfo.LdapLogin = true;
                             userInfo.Email = nextEntry.GetAttribute("mail").StringValue;
                             userInfo.LdapName = nextEntry.GetAttribute("sAMAccountName").StringValue;
@@ -180,6 +180,7 @@ namespace BookingApp.Services
                             else
                             {
                                 item.ID = existAccount.ID;
+                                item.Role = existAccount.Role;
                                 await _userService.UpdateAsync(item);
                             }
                             var result = await _authService.LoginWithLdapAsync(userInfo.LdapName);
