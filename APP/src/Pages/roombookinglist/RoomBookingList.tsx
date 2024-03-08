@@ -116,7 +116,7 @@ const RoomBookingList: React.FC = () => {
           {/* Edit Booking Modal */}
           <Modal
             title="Edit Booking"
-            visible={isEditModalVisible}
+            open={isEditModalVisible}
             onCancel={() => setIsEditModalVisible(false)}
             onOk={handleSaveEdit}
           >

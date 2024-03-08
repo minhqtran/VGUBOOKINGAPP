@@ -137,7 +137,7 @@ const UserManagement: React.FC = () => {
               <>
                 <Modal
                   title="User Information"
-                  visible={isViewModalVisible}
+                  open={isViewModalVisible}
                   onCancel={handleCloseViewModal}
                   footer={[
                     <Button key="close" onClick={handleCloseViewModal}>
@@ -165,7 +165,7 @@ const UserManagement: React.FC = () => {
                 </Modal>
                 <Modal
                   title="Edit User Information"
-                  visible={isEditModalVisible}
+                  open={isEditModalVisible}
                   onCancel={handleCloseEditModal}
                   footer={[
                     <Button key="close" onClick={handleCloseEditModal}>
@@ -200,7 +200,7 @@ const UserManagement: React.FC = () => {
                 </Modal>
                 <Modal
                   title="Confirm Deletion"
-                  visible={isDeleteConfirmationModalVisible}
+                  open={isDeleteConfirmationModalVisible}
                   onCancel={() => setIsDeleteConfirmationModalVisible(false)}
                   onOk={handleConfirmDeleteUser}
                 >

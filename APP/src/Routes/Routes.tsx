@@ -3,7 +3,7 @@ import App from "../App";
 import HomePage from "../Pages/HomePage/HomePage";
 import VehicleBooking from "../Components/vehiclebooking/VehicleBooking";
 import Sidenav from "../Components/sidenav/Sidenav";
-import RoomBookingList from "../Components/roombookinglist/RoomBookingList";
+import RoomBookingList from "../Pages/roombookinglist/RoomBookingList";
 import UserManagement from "../Components/usermanagement/UserManagement";
 import ForgotPass from "../Components/forgotpass/Forgotpass";
 import Login from "../Pages/LoginPage/Login";
