@@ -7,8 +7,10 @@ import { Outlet } from "react-router";
 const App: React.FC = () => {
   return (
     <>
+    <div className="app-container">
       <Sidenav />
       <Outlet />
+    </div>
     </>
   );
 };

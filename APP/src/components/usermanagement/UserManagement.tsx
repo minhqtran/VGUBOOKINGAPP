@@ -109,7 +109,6 @@ const UserManagement: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sidenav />
 
       <Layout className="site-layout">
         <Content style={{ margin: "16px" }}>

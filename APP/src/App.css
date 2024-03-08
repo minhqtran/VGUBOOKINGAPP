@@ -172,6 +172,11 @@ img{
   align-items: center;
 }
 
+/* App display */
+.app-container{
+  display: flex;
+}
+
 /* Breakpoints */
 /* For large devices */
 @media screen and (max-width: 992px){
