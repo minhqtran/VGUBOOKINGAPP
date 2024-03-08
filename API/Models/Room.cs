@@ -5,9 +5,9 @@ namespace BookingApp.Models
     public partial class Room
     {
         public int ID { get; set; }
-        public string BuildingGUID { get; set; }
-        public string FloorGUID { get; set; }
-        public string CampusGUID { get; set; }
+        public string BuildingGuid { get; set; }
+        public string FloorGuid { get; set; }
+        public string CampusGuid { get; set; }
         public int RoomNum { get; set; }
         public int RoomTypeID { get; set; }
         public DateTime? CreateDate { get; set; }

@@ -26,6 +26,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Web;
+using System.Net.NetworkInformation;
 
 namespace BookingApp.Services
 {
@@ -45,6 +46,7 @@ namespace BookingApp.Services
         Task<bool> CheckIsLocalAccount(UserForLoginDto loginDto);
         Task<OperationResult> LoginAsync(decimal ID);
         Task<OperationResult> RefreshTokenAsync(string token, string refreshToken);
+        Task<OperationResult> NewLoginAsync(UserForLoginDto loginDto);
     }
     public class AuthService : IAuthService
     {
@@ -168,7 +170,83 @@ namespace BookingApp.Services
             };
 
         }
+        public async Task<OperationResult> NewLoginAsync(UserForLoginDto loginDto) 
+        {
+            try
+            {
+                var item = await _repoUser.FindAll(x => x.Email == loginDto.Username && x.Status).FirstOrDefaultAsync();
+                if (item == null) // nếu không tìm thấy tài khoản
+                {
+                    return new OperationResult
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        Message = "The account does not exist!",
+                        Success = false
+                    };
+                }
+                if (item.Password.VerifyHashedPassword(loginDto.Password.ToSha512())) // nếu mật khẩu đúng
+                {
+                    var claims = new[]
+{
+                            new Claim(ClaimTypes.NameIdentifier, item.ID.ToString()),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                        };
+                    var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
 
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(claims),
+                        Expires = DateTime.Now.Add(_jwtSettings.TokenLifetime),
+                        //Expires = DateTime.Now.Add(TimeSpan.FromSeconds(15)),
+                        SigningCredentials =
+                        new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var token = tokenHandler.CreateToken(tokenDescriptor);
+                    var tokenValue = tokenHandler.WriteToken(token);
+                    //var refreshToken = new RefreshToken
+                    //{
+                    //    JwtId = token.Id,
+                    //    AccountId = item.ID.ToInt(),
+                    //    CreationDate = DateTime.Now,
+                    //    ExpiryDate = DateTime.Now.AddMonths(6),
+                    //    Token = tokenValue
+                    //};
+
+                    //_repoRefreshToken.Add(refreshToken);
+                    //await _unitOfWork.SaveChangeAsync();
+
+                    return new OperationResult
+                    {
+                        Success = true,
+                        Data = new
+                        {
+                            Token = tokenValue,
+                            //RefreshToken = refreshToken.JwtId,
+                            User = item.Name,
+                        }
+                    };
+                }
+                else
+                {
+                    return new OperationResult
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        Message = "The password is incorrect!",
+                        Success = false
+                    };
+                }
+            }
+            catch (Exception ex)
+            { 
+                return new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = ex.Message,
+                    Success = false
+                };
+            }
+        }
         public async Task<OperationResult> LoginAsync(decimal ID)
         {
             var account = await _repo.FindAll().FirstOrDefaultAsync(x => x.AccountId == ID);
@@ -618,7 +696,7 @@ namespace BookingApp.Services
 
         public async Task<OperationResult> LoginWithLdapAsync(string LdapName)
         {
-            var account = await _repoUser.FindAll(x => x.Ldap_Name == LdapName && x.Status).FirstOrDefaultAsync();
+            var account = await _repoUser.FindAll(x => x.LdapName == LdapName && x.Status).FirstOrDefaultAsync();
             return await GenerateOperationResultForUserWithLdapAsync(account);
         }
 

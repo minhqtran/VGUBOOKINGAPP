@@ -32,8 +32,8 @@ namespace BookingApp.Services.Base
         Task<PagedList<TDto>> GetWithPaginationsAsync(PaginationParams param);
 
         Task<PagedList<TDto>> SearchAsync(PaginationParams param, object text);
-        TDto GetByID(object id);
-        Task<TDto> GetByIDAsync(object id);
+        TDto GetByID(int id);
+        Task<TDto> GetByIDAsync(int id);
         Task<object> GetDataDropdownlist(DataManager data);
     }
     public class ServiceBase<T, TDto> : IServiceBase<T, TDto> where T : class
@@ -129,12 +129,12 @@ namespace BookingApp.Services.Base
 
         }
 
-        public virtual TDto GetByID(object id)
+        public virtual TDto GetByID(int id)
         {
             return _mapper.Map<T, TDto>(_repo.FindByID(id));
         }
         
-        public virtual async Task<TDto> GetByIDAsync(object id)
+        public virtual async Task<TDto> GetByIDAsync(int id)
         {
             return  _mapper.Map<T, TDto>( await _repo.FindByIDAsync(id));
         }

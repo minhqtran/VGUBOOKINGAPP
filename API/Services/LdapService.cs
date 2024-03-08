@@ -158,10 +158,10 @@ namespace BookingApp.Services
 
                             var nextEntry = searchResult.Next();
                             userInfo.Name = nextEntry.GetAttribute("Name").StringValue;
-                            userInfo.Role = SystemRole.USER;
+                            userInfo.Role = SystemRole.User;
                             userInfo.LdapLogin = true;
                             userInfo.Email = nextEntry.GetAttribute("mail").StringValue;
-                            userInfo.Ldap_Name = nextEntry.GetAttribute("sAMAccountName").StringValue;
+                            userInfo.LdapName = nextEntry.GetAttribute("sAMAccountName").StringValue;
                             var depart = nextEntry.GetAttributeSet("MemberOf").Count > 0 ? nextEntry.GetAttribute("MemberOf").StringValueArray[1] : string.Empty;
                             var match = Regex.Match(depart, @"CN=(?<department>[^,]+)");
                             if (match.Success) { userInfo.Department = match.Groups["department"].Value; }
@@ -169,7 +169,7 @@ namespace BookingApp.Services
 
                             var item = _mapper.Map<UserDto>(userInfo);
                             // check user exist
-                            var existAccount =  _repoUser.FindSingle(x => x.Ldap_Name == userInfo.Ldap_Name);
+                            var existAccount =  _repoUser.FindSingle(x => x.LdapName == userInfo.LdapName);
 
                             if (existAccount == null)
                             {
@@ -180,9 +180,10 @@ namespace BookingApp.Services
                             else
                             {
                                 item.ID = existAccount.ID;
+                                item.Role = existAccount.Role;
                                 await _userService.UpdateAsync(item);
                             }
-                            var result = await _authService.LoginWithLdapAsync(userInfo.Ldap_Name);
+                            var result = await _authService.LoginWithLdapAsync(userInfo.LdapName);
                             return result;
                         }
 

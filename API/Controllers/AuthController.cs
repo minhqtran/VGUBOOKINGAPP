@@ -41,6 +41,13 @@ namespace BookingApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        public async Task<IActionResult> NewLoginAsync([FromBody] UserForLoginDto model)
+        {
+            return StatusCodeResult(await _authService.NewLoginAsync(model));
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginAsync([FromBody] UserForLoginDto model)
         {
             return StatusCodeResult(await _authService.LoginAsync(model));

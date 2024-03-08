@@ -26,6 +26,7 @@ namespace BookingApp.Data
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
+        //public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,24 +36,37 @@ namespace BookingApp.Data
             modelBuilder.Entity<Building>(entity =>
             {
                 entity.Property(e => e.BuildingGuid)
-                   .HasColumnName("Building_Guid")
+                   .HasColumnName("BuildingGuid")
                    .HasMaxLength(50);
                 entity.ToTable("Building");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Ldap_Name)
-                   .HasColumnName("Ldap_name")
+                entity.Property(e => e.LdapName)
+                   .HasColumnName("LdapName")
                    .HasMaxLength(50);
                 entity.ToTable("User");
             });
             modelBuilder.Entity<Room>(entity =>
             {
                 entity.Property(e => e.RoomGuid)
-                   .HasColumnName("Room_Guid")
+                   .HasColumnName("RoomGuid")
                    .HasMaxLength(50);
                 entity.ToTable("Room");
+            });
+            modelBuilder.Entity<Log>(entity =>
+            {
+                entity.Property(e => e.LogGuid)
+                   .HasColumnName("LogGuid")
+                   .HasMaxLength(50);
+                entity.ToTable("Log");
+            });
+            modelBuilder.Entity<Booking>(entity =>
+            {
+                entity.Property(e => e.BookingGuid)
+                   .HasColumnName("BookingGuid")
+                   .HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

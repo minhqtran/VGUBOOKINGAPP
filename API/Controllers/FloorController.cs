@@ -58,7 +58,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetByIDAsync(decimal id)
+        public async Task<ActionResult> GetByIDAsync(int id)
         {
             return Ok(await _service.GetByIDAsync(id));
         }

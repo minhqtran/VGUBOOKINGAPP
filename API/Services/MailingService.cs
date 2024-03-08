@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BookingApp.Data;
 using BookingApp.DTO;
+using BookingApp.Helpers;
 using BookingApp.Models;
 using BookingApp.Services.Base;
 using System;
@@ -12,6 +13,7 @@ namespace BookingApp.Services
 {
     public interface IMailingService: IServiceBase<MailingDto, MailingDto>
     {
+       bool sendMail(MailingAutoDto mailingAutoDto);
     }
     public class MailingService : ServiceBase<MailingDto, MailingDto>, IMailingService
     {
@@ -19,6 +21,7 @@ namespace BookingApp.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
+
         public MailingService(
             IRepositoryBase<MailingDto> repo, 
             IUnitOfWork unitOfWork,
@@ -31,6 +34,13 @@ namespace BookingApp.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configMapper = configMapper;
+            
+        }
+       
+
+        public bool sendMail(MailingAutoDto mailingAutoDto)
+        {
+            throw new NotImplementedException();
         }
     }
 }
