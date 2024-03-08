@@ -2,9 +2,8 @@
 
 import React, { useState } from "react";
 import { Layout, Table, Button, Modal, Form, Input, Select } from "antd";
-import Sidenav from "../sidenav/Sidenav";
-import roomBookingData from "./roomBookingData"; // Import sample room booking data
 import "./roombookinglist.css"; // Import CSS for styling
+import roomBookingData from "./roomBookingData";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -104,8 +103,6 @@ const RoomBookingList: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sidenav />
-
       <Layout className="site-layout">
         <Content style={{ margin: "16px" }}>
           {/* ... rest of the code ... */}

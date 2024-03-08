@@ -6,7 +6,9 @@ import Sidenav from "../Components/sidenav/Sidenav";
 import RoomBookingList from "../Components/roombookinglist/RoomBookingList";
 import UserManagement from "../Components/usermanagement/UserManagement";
 import ForgotPass from "../Components/forgotpass/Forgotpass";
-import Login from "../Pages/login/Login";
+import Login from "../Pages/LoginPage/Login";
+import Help from "../Pages/HelpPage/Help";
+import Regulation from "../Pages/RegulationPage/Regulation";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +23,8 @@ export const router = createBrowserRouter([
       { path: "/vehicle-booking", element: <VehicleBooking /> },
       { path: "/room-booking-list", element: <RoomBookingList /> },
       { path: "/user-management", element: <UserManagement /> },
+      { path: "/help", element: <Help /> },
+      { path: "/regulation", element: <Regulation /> },
     ],
   },
 ]);
