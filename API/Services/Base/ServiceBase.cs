@@ -25,7 +25,7 @@ namespace BookingApp.Services.Base
         Task<OperationResult> UpdateAsync(TDto model);
         Task<OperationResult> UpdateRangeAsync(List<TDto> model);
 
-        Task<OperationResult> DeleteAsync(object id);
+        Task<OperationResult> DeleteAsync(int  id);
 
         Task<List<TDto>> GetAllAsync();
 
@@ -100,7 +100,7 @@ namespace BookingApp.Services.Base
             return operationResult;
         }
 
-        public virtual async Task<OperationResult> DeleteAsync(object id)
+        public virtual async Task<OperationResult> DeleteAsync(int  id)
         {
             var item = _repo.FindByID(id);
             _repo.Remove(item);

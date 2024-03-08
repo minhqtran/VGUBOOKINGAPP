@@ -16,6 +16,7 @@ namespace BookingApp.DTO
         public int StaffCode { get; set; }
         public string Ldap_Name { get; set; }
         public DateTime? CreateDate { get; set; }
+
         public int CreateBy { get; set; }
         //public DateTime? UpdateDate { get; set; }
         //public decimal? UpdateBy { get; set; }

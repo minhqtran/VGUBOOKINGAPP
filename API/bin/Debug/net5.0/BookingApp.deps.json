@@ -58,7 +58,7 @@
           "MySql.EntityFrameworkCore": "5.0.0",
           "Novell.Directory.Ldap.NETStandard": "3.6.0",
           "Oracle.EntityFrameworkCore": "5.21.1",
-          "Oracle.ManagedDataAccess.Core": "3.21.70",
+          "Oracle.ManagedDataAccess.Core": "3.21.90",
           "Quartz.AspNetCore": "3.5.0",
           "Quartz.Extensions.DependencyInjection": "3.5.0",
           "Quartz.Extensions.Hosting": "3.5.0",
@@ -1676,7 +1676,7 @@
       "Oracle.EntityFrameworkCore/5.21.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "5.0.7",
-          "Oracle.ManagedDataAccess.Core": "3.21.70"
+          "Oracle.ManagedDataAccess.Core": "3.21.90"
         },
         "runtime": {
           "lib/netstandard2.1/Oracle.EntityFrameworkCore.dll": {
@@ -1688,7 +1688,7 @@
           "lib/netstandard2.1/Oracle.EntityFrameworkCore.dll": {}
         }
       },
-      "Oracle.ManagedDataAccess.Core/3.21.70": {
+      "Oracle.ManagedDataAccess.Core/3.21.90": {
         "dependencies": {
           "System.Diagnostics.PerformanceCounter": "6.0.0",
           "System.DirectoryServices": "5.0.0",
@@ -5698,12 +5698,12 @@
       "path": "oracle.entityframeworkcore/5.21.1",
       "hashPath": "oracle.entityframeworkcore.5.21.1.nupkg.sha512"
     },
-    "Oracle.ManagedDataAccess.Core/3.21.70": {
+    "Oracle.ManagedDataAccess.Core/3.21.90": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KUiIl5761WWWh/TqTdvi3THewAqNkLFSCxV5RwYJWTAE8TbkiT8K/lnFgtEqmnWd4BJKbM4oEZnqrK4dKaf03g==",
-      "path": "oracle.manageddataaccess.core/3.21.70",
-      "hashPath": "oracle.manageddataaccess.core.3.21.70.nupkg.sha512"
+      "sha512": "sha512-q1k7i9Im9GPFJzBz9w0sLRlN0MBTWHaAAdanTiHVlpMfVQ/JiKRb5uDVv8bplsMfn2S74WJAXbzwzou/6yb9kg==",
+      "path": "oracle.manageddataaccess.core/3.21.90",
+      "hashPath": "oracle.manageddataaccess.core.3.21.90.nupkg.sha512"
     },
     "Owin/1.0.0": {
       "type": "package",

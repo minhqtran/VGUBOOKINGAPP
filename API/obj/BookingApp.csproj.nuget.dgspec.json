@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj": {}
+    "E:\\Intern\\VGUBOOKINGAPP\\API\\BookingApp.csproj": {}
   },
   "projects": {
-    "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj": {
+    "E:\\Intern\\VGUBOOKINGAPP\\API\\BookingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+        "projectUniqueName": "E:\\Intern\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
         "projectName": "BookingApp",
-        "projectPath": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
-        "packagesPath": "C:\\Users\\Quynh.BH\\.nuget\\packages\\",
-        "outputPath": "D:\\System\\VGUBOOKINGAPP\\API\\obj\\",
+        "projectPath": "E:\\Intern\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "E:\\Intern\\VGUBOOKINGAPP\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Quynh.BH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -146,7 +151,7 @@
             },
             "Oracle.ManagedDataAccess.Core": {
               "target": "Package",
-              "version": "[3.21.70, )"
+              "version": "[3.21.90, )"
             },
             "Quartz.AspNetCore": {
               "target": "Package",
@@ -196,7 +201,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

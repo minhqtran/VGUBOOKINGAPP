@@ -94,7 +94,7 @@ namespace BookingApp.Services
             return data;
 
         }
-        public override async Task<OperationResult> DeleteAsync(object id)
+        public override async Task<OperationResult> DeleteAsync(int id)
         {
             var item = _repo.FindByID(id);
             //item.CancelFlag = "Y";

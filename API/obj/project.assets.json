@@ -2188,7 +2188,7 @@
           "lib/netstandard2.1/Oracle.EntityFrameworkCore.dll": {}
         }
       },
-      "Oracle.ManagedDataAccess.Core/3.21.70": {
+      "Oracle.ManagedDataAccess.Core/3.21.90": {
         "type": "package",
         "dependencies": {
           "System.Diagnostics.PerformanceCounter": "6.0.0",
@@ -7135,10 +7135,10 @@
         "readme.txt"
       ]
     },
-    "Oracle.ManagedDataAccess.Core/3.21.70": {
-      "sha512": "KUiIl5761WWWh/TqTdvi3THewAqNkLFSCxV5RwYJWTAE8TbkiT8K/lnFgtEqmnWd4BJKbM4oEZnqrK4dKaf03g==",
+    "Oracle.ManagedDataAccess.Core/3.21.90": {
+      "sha512": "q1k7i9Im9GPFJzBz9w0sLRlN0MBTWHaAAdanTiHVlpMfVQ/JiKRb5uDVv8bplsMfn2S74WJAXbzwzou/6yb9kg==",
       "type": "package",
-      "path": "oracle.manageddataaccess.core/3.21.70",
+      "path": "oracle.manageddataaccess.core/3.21.90",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7147,7 +7147,7 @@
         "PerfCounters/unregister_odpc_perfmon_counters.ps1",
         "info.txt",
         "lib/netstandard2.1/Oracle.ManagedDataAccess.dll",
-        "oracle.manageddataaccess.core.3.21.70.nupkg.sha512",
+        "oracle.manageddataaccess.core.3.21.90.nupkg.sha512",
         "oracle.manageddataaccess.core.nuspec",
         "readme.txt"
       ]
@@ -12761,7 +12761,7 @@
       "MySql.EntityFrameworkCore >= 5.0.0",
       "Novell.Directory.Ldap.NETStandard >= 3.6.0",
       "Oracle.EntityFrameworkCore >= 5.21.1",
-      "Oracle.ManagedDataAccess.Core >= 3.21.70",
+      "Oracle.ManagedDataAccess.Core >= 3.21.90",
       "Quartz.AspNetCore >= 3.5.0",
       "Quartz.Extensions.DependencyInjection >= 3.5.0",
       "Quartz.Extensions.Hosting >= 3.5.0",
@@ -12772,19 +12772,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Quynh.BH\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+      "projectUniqueName": "E:\\Intern\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
       "projectName": "BookingApp",
-      "projectPath": "D:\\System\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
-      "packagesPath": "C:\\Users\\Quynh.BH\\.nuget\\packages\\",
-      "outputPath": "D:\\System\\VGUBOOKINGAPP\\API\\obj\\",
+      "projectPath": "E:\\Intern\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "E:\\Intern\\VGUBOOKINGAPP\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Quynh.BH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12804,6 +12804,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -12916,7 +12921,7 @@
           },
           "Oracle.ManagedDataAccess.Core": {
             "target": "Package",
-            "version": "[3.21.70, )"
+            "version": "[3.21.90, )"
           },
           "Quartz.AspNetCore": {
             "target": "Package",
@@ -12966,7 +12971,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -12977,16 +12982,6 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNetCore.Authentication.JwtBearer' 5.0.7 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q7cg-43mg-qp69",
       "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Oracle.ManagedDataAccess.Core' 3.21.70 has a known high severity vulnerability, https://github.com/advisories/GHSA-5pm2-9mr2-3frq",
-      "libraryId": "Oracle.ManagedDataAccess.Core",
       "targetGraphs": [
         "net5.0"
       ]

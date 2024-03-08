@@ -52,7 +52,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(decimal id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
             return StatusCodeResult(await _service.DeleteAsync(id));
         }
