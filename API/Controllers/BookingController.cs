@@ -39,10 +39,15 @@ namespace BookingApp.Controllers
             return Ok(await _service.UpdateAsync(model));
         }
         [HttpPut]
-        public async Task<ActionResult> Disable(int id)
+        public async Task<ActionResult> UpdateStatus(int id, int status)
         {
-            return Ok(await _service.Disable(id));
+            return Ok(await _service.UpdateStatus(id, status));
         }
+        //[HttpPut]
+        //public async Task<ActionResult> Disable(int id)
+        //{
+        //    return Ok(await _service.Disable(id));
+        //}
         [HttpDelete]
         public async Task<ActionResult> DeleteAsync(int id)
         {

@@ -44,7 +44,7 @@ namespace BookingApp.Services
         Task<OperationResult> LoginWithLdapAsync(string LdapName);
         Task<object> CheckLoginAuth(UserForLoginDto loginDto);
         Task<bool> CheckIsLocalAccount(UserForLoginDto loginDto);
-        Task<OperationResult> LoginAsync(decimal ID);
+        Task<OperationResult> LoginAsync(int ID);
         Task<OperationResult> RefreshTokenAsync(string token, string refreshToken);
         Task<OperationResult> NewLoginAsync(UserForLoginDto loginDto);
     }
@@ -247,7 +247,7 @@ namespace BookingApp.Services
                 };
             }
         }
-        public async Task<OperationResult> LoginAsync(decimal ID)
+        public async Task<OperationResult> LoginAsync(int ID)
         {
             var account = await _repo.FindAll().FirstOrDefaultAsync(x => x.AccountId == ID);
             if (account != null)
@@ -266,7 +266,7 @@ namespace BookingApp.Services
         {
             string token = _httpContextAccessor.HttpContext.Request.Headers["Authorization"];
             var accountId = JWTExtensions.GetDecodeTokenByID(token);
-            var account = await _repo.FindByIDAsync(accountId.ToDecimal());
+            var account = await _repo.FindByIDAsync(accountId);
             account.LastLoginDate = DateTime.Now;
             try
             {

@@ -32,11 +32,13 @@ namespace BookingApp.Services
     public class RoomService : ServiceBase<Room, RoomDto>, IRoomService
     {
         private readonly IRepositoryBase<Room> _repo;
+        //private readonly IRepositoryBase<Log> _repoLog;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
         public RoomService(
                        IRepositoryBase<Room> repo,
+                            //IRepositoryBase<Log> repoLog,
                                   IUnitOfWork unitOfWork,
                                              IMapper mapper,
                                                         MapperConfiguration configMapper
@@ -44,6 +46,7 @@ namespace BookingApp.Services
             : base(repo, unitOfWork, mapper, configMapper)
         {
             _repo = repo;
+            //_repoLog = repoLog;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configMapper = configMapper;

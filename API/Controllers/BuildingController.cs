@@ -29,7 +29,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> DeleteUploadFile([FromForm] decimal key)
+        public async Task<ActionResult> DeleteUploadFile([FromForm] int key)
         {
             return Ok(await _service.DeleteUploadFile(key));
         }

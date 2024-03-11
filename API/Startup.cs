@@ -106,7 +106,7 @@ namespace BookingApp
             app.UseSwaggerUI(option => { option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description); });
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
+            app.UseMiddleware<LoggingMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

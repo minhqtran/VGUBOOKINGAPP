@@ -11,7 +11,7 @@ namespace BookingApp.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Department { get; set; }
-        public decimal Role { get; set; }
+        public int Role { get; set; }
         public int StaffCode { get; set; }
         public string LdapName { get; set; }
         public string Password { get; set; }

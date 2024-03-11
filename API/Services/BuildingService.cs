@@ -26,7 +26,7 @@ namespace BookingApp.Services
         Task<object> LoadData(DataManager data, string farmGuid);
         Task<object> GetAudit(object id);
         Task<OperationResult> AddFormAsync(BuildingDto model);
-        Task<object> DeleteUploadFile(decimal key);
+        Task<object> DeleteUploadFile(int key);
         Task<object> GetSitesByAccount();
         Task<object> CheckRoom();
 
@@ -174,7 +174,7 @@ namespace BookingApp.Services
             
         }
 
-        public async Task<object> DeleteUploadFile(decimal key)
+        public async Task<object> DeleteUploadFile(int key)
         {
             
             throw new ArgumentException();

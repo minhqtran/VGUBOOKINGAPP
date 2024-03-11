@@ -23,9 +23,12 @@ namespace BookingApp.Data
         {
             _contextAccessor = contextAccessor;
         }
-        public virtual DbSet<Building> Buildings { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<Building> Building { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Room> Room { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
+        public virtual DbSet<Booking> Booking { get; set; }
+
         //public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -54,13 +57,6 @@ namespace BookingApp.Data
                    .HasColumnName("RoomGuid")
                    .HasMaxLength(50);
                 entity.ToTable("Room");
-            });
-            modelBuilder.Entity<Log>(entity =>
-            {
-                entity.Property(e => e.LogGuid)
-                   .HasColumnName("LogGuid")
-                   .HasMaxLength(50);
-                entity.ToTable("Log");
             });
             modelBuilder.Entity<Booking>(entity =>
             {
