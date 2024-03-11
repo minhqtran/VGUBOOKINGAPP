@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loginBgImage from "../../assets/img/login-bg.jpg";
 import loginLogo from "../../assets/img/VGU-logo.png";
-import "./Login.css"; // Import the CSS file
+import "./login.css"; // Import the CSS file
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");

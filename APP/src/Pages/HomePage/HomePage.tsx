@@ -1,12 +1,12 @@
 import React from "react";
-import Sidenav from "../../Components/sidenav/Sidenav";
+import Sidenav from "../../components/sidenav/Sidenav";
 
 interface Props {}
 
 const HomePage = (props: Props) => {
   return (
     <div>
-      <Sidenav />
+      {/* <Sidenav /> */}
     </div>
   );
 };
