@@ -175,6 +175,16 @@ img{
 /* App display */
 .app-container{
   display: flex;
+  flex-direction: row;
+}
+
+.main-content{
+  flex:1;
+  padding: 20px;
+}
+
+.sidenav-container{
+ flex:1;
 }
 
 /* Breakpoints */

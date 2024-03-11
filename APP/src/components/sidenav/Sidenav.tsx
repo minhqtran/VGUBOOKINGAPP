@@ -8,7 +8,7 @@ import {
   QuestionCircleOutlined,
   BellOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import VGULogo from "../../assets/img/VGU-logo2.png";
 import "./sidenav.css";
 import "boxicons";
