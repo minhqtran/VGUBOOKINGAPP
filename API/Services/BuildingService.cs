@@ -139,7 +139,13 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
-       
+
+        public override async Task<PagedList<BuildingDto>> GetWithPaginationsAsync(PaginationParams param)
+        {
+            var lists = _repo.FindAll().ProjectTo<BuildingDto>(_configMapper).OrderByDescending(x => x.ID);
+
+            return await PagedList<BuildingDto>.CreateAsync(lists, param.PageNumber, param.PageSize);
+        }
         public async Task<object> LoadData(DataManager data, string farmGuid)
         {
             throw new NotImplementedException();
