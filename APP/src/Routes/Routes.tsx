@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import HomePage from "../pages/HomePage/HomePage";
+import HomePage from "../Pages/HomePage/HomePage";
 import VehicleBooking from "../components/vehiclebooking/VehicleBooking";
 import Sidenav from "../components/sidenav/Sidenav";
-import RoomBookingList from "../pages/roombookinglist/RoomBookingList";
+import RoomBookingList from "../Pages/roombookinglist/RoomBookingList";
 import UserManagement from "../components/usermanagement/UserManagement";
 import ForgotPass from "../components/forgotpass/Forgotpass";
-import Login from "../pages/LoginPage/Login";
-import Help from "../pages/HelpPage/Help";
-import Regulation from "../pages/RegulationPage/Regulation";
-import RoomBooking from "../pages/roombooking/RoomBooking";
+import Login from "../Pages/LoginPage/Login";
+import Help from "../Pages/HelpPage/Help";
+import Regulation from "../Pages/RegulationPage/Regulation";
+import RoomBooking from "../Pages/roombooking/RoomBooking";
 
 export const router = createBrowserRouter([
   {
