@@ -104,7 +104,7 @@ const RoomBookingList: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Layout className="site-layout">
-        <Content style={{ margin: "16px" }}>
+        <Content style={{ margin: "0px" }}>
           {/* ... rest of the code ... */}
 
           <Table

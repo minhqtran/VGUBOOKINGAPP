@@ -2,9 +2,8 @@
 
 .sidenav-container {
     display: flex;
-    height: 100vh;
     color: var(--container-color);
-    
+
   }
 
 .ant-layout-sider-children{
@@ -32,7 +31,6 @@
     margin-bottom: var(--mb-1)
   }
 
-
   .sidenav-menu-bar{
     height: 100%;
     display: flex;
@@ -50,6 +48,7 @@
     width: 300px;
     height: 100px;
     border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
   }
   
   .sidenav-profile-section-wrapper {

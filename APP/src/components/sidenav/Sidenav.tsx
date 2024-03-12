@@ -19,12 +19,11 @@ const Sidenav: React.FC = () => {
   return (
     <Sider
       className="sidenav-container"
-      width={250}
+      width={300}
       theme="light"
       breakpoint="lg"
-      collapsedWidth="0"
+      collapsedWidth="100"
     >
-      //Sidebar content
       <div className="sidenav-logo-name-container">
         <Link to="/">
           <img src={VGULogo} alt="Logo" className="sidenav-logo" />

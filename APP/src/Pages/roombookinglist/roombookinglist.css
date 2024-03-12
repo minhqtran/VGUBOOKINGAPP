@@ -24,3 +24,10 @@
     color: #f5222d; /* Red color for delete button */
   }
   
+  .site-layout{
+    background-color: var(--container-color);
+  }
+
+  .main-content{
+    background-color: var(--container-color);
+  }

@@ -109,37 +109,24 @@ const RoomBooking: React.FC = () => {
   }, [roomId]);
 
   return (
-    <div>
+    <div className="room-booking-container">
       <h1>Room Booking</h1>
       {building && !roomId && (
-        <>
-          <Select
-            defaultValue="Select Building"
-            style={{ width: 200 }}
-            onChange={handleBuildingChange}
-          >
+        <div className="select-building-container">
+          <Select defaultValue="Select Building" style={{ width: 200 }} onChange={handleBuildingChange}>
             <Option value="lecture-hall">Lecture Hall</Option>
             <Option value="admin-building">Admin Building</Option>
             <Option value="academic-cluster-1">Academic Cluster 1</Option>
           </Select>
-
-          <div className="room-list-container">{renderRoomList()}</div>
-        </>
+        </div>
       )}
 
       {selectedRoom && (
-        <div>
+        <div className="room-details-container">
           <Button onClick={handleBackButtonClick}>Back</Button>
           <h2>Room Details</h2>
-          <Card
-            title={selectedRoom.name}
-            style={{ width: 300, margin: "16px" }}
-          >
-            <img
-              src={selectedRoom.image}
-              alt={selectedRoom.name}
-              style={{ width: "100%" }}
-            />
+          <Card className="room-details-card" title={selectedRoom.name}>
+            <img src={selectedRoom.image} alt={selectedRoom.name} style={{ width: '100%' }} />
             <p>Capacity: {selectedRoom.capacity}</p>
             <p>Location: {selectedRoom.location}</p>
             <Button type="primary" onClick={handleMakeBooking}>
@@ -147,6 +134,10 @@ const RoomBooking: React.FC = () => {
             </Button>
           </Card>
         </div>
+      )}
+
+      {!roomId && (
+        <div className="room-list-container">{renderRoomList()}</div>
       )}
     </div>
   );
