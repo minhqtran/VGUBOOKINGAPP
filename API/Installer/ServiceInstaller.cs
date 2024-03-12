@@ -20,6 +20,7 @@ namespace BookingApp.Installer
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IMailExtension, MailExtension>();
+            services.AddScoped<ILogService, LogService>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BookingApp.Data;
 using BookingApp.DTO;
 using BookingApp.DTO.auth;
 using BookingApp.Models;
@@ -17,6 +18,7 @@ namespace BookingApp.Helpers.AutoMapper
             CreateMap<UserDto, User>();
             CreateMap<RoomDto, Room>();
             CreateMap<BookingDto, Booking>();
+            CreateMap<LogDto, Log>();
         }
     }
 }

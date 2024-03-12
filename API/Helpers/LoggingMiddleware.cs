@@ -11,42 +11,29 @@ namespace BookingApp.Helpers
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<LoggingMiddleware> _logger;
-        private readonly IRepositoryBase<Log> _repoLog;
-        public LoggingMiddleware(RequestDelegate next, 
-            ILogger<LoggingMiddleware> logger
-            //, IRepositoryBase<Log> repoLog
-            )
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public LoggingMiddleware(RequestDelegate next,
+            ILogger<LoggingMiddleware> logger,
+            IHttpContextAccessor httpContextAccessor)
         {
             _next = next;
             _logger = logger;
-            //_repoLog = repoLog;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task Invoke(HttpContext context, BookingAppContext bookingAppContext)
         {
-            // Log before other middleware
-            //_logger.LogInformation("API Request: {Method} {Path}", context.Request.Method, context.GetRouteData().Values["controller"]?.ToString());
             await _next(context);
-            //bookingAppContext.Add(new Log
-            //{
-            //    UserGuid = context.User.Identity.Name,
-            //    EventType = context.Request.Method,
-            //    EventName = context.GetRouteData().Values["controller"]?.ToString(),
-            //    Status = context.Response.StatusCode == 200
-            //});
+            var accessToken = _httpContextAccessor.HttpContext.Request.Headers["Authorization"];
             bookingAppContext.Log.Add(new Log
             {
                 TimeStamp = System.DateTime.Now,
-                UserGuid = context.User.Identity.Name,
+                UserID = JWTExtensions.GetDecodeTokenByID(accessToken),
                 EventType = context.GetRouteData().Values["action"]?.ToString(),
                 EventName = context.GetRouteData().Values["controller"]?.ToString(),
                 Status = context.Response.StatusCode.ToString()
-            }) ;
+            });
             await bookingAppContext.SaveChangesAsync();
-            // Log after other middleware (you might get response info here)
-            //_logger.LogInformation("API Response: {StatusCode}", context.Response.StatusCode);
 
-            // Potentially add the log entry to dbContext.Logs 
-            // and call dbContext.SaveChanges() if desired
         }
     }
 }
