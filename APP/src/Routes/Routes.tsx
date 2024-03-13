@@ -10,6 +10,7 @@ import Login from "../Pages/LoginPage/Login";
 import Help from "../Pages/HelpPage/Help";
 import Regulation from "../Pages/RegulationPage/Regulation";
 import RoomBooking from "../Pages/roombooking/RoomBooking";
+import RoomInfo from "../components/RoomInfo/RoomInfo";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: "/user-management", element: <UserManagement /> },
       { path: "/help", element: <Help /> },
       { path: "/regulation", element: <Regulation /> },
+      { path: "/room-info", element: <RoomInfo /> },
     ],
   },
 ]);

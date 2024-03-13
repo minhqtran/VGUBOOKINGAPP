@@ -1,0 +1,54 @@
+.room-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.room-picture {
+  width: 100%;
+  height: 35vh;
+  object-fit: cover;
+  border: 2px solid #ddd; 
+}
+
+.room-name {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.room-type {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.option-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.option-button.selected {
+  text-decoration: underline;
+}
+
+.option-button {
+  margin-right: 1rem;
+}
+
+.selected-option-content {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reservation-button {
+  display: flex;
+  justify-content: center;
+}
+
+.reservation-button button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
