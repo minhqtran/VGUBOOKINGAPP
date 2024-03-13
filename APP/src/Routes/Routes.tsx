@@ -9,7 +9,7 @@ import ForgotPass from "../components/forgotpass/Forgotpass";
 import Login from "../Pages/LoginPage/Login";
 import Help from "../Pages/HelpPage/Help";
 import Regulation from "../Pages/RegulationPage/Regulation";
-import RoomBooking from "../Pages/roombooking/RoomBooking";
+import RoomBookingPage from "../Pages/roombooking/RoomBookingPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
       { path: "/forgot-password", element: <ForgotPass /> },
       { path: "/sidenav", element: <Sidenav /> },
       { path: "/vehicle-booking", element: <VehicleBooking /> },
-      { path: "/room-booking/:building?", element: <RoomBooking /> },
+      { path: "/room-booking/:building", element:<RoomBookingPage /> },
       { path: "/room-booking-list", element: <RoomBookingList /> },
       { path: "/user-management", element: <UserManagement /> },
       { path: "/help", element: <Help /> },

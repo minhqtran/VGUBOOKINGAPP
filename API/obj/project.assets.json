@@ -12778,11 +12778,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+      "projectUniqueName": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\project\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
       "projectName": "BookingApp",
-      "projectPath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+      "projectPath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\project\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
       "packagesPath": "C:\\Users\\haihe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\VGUBOOKINGAPP\\API\\obj\\",
+      "outputPath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\project\\VGUBOOKINGAPP\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

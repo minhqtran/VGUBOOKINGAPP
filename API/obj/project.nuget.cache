@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Db1WLBsG2TLRuM5NM1PQ2NvYf3N7YvcpFBytmprecseSwQOqEHZYpotrlEhKfCQckuLSXzR9890TERjmcLUv3g==",
+  "dgSpecHash": "lR3Ee0Iwd3RElIIShc/ETcqMxDzUgLHCmPtgVFVh106neO08E6LAjMDFWVenvZXc6s+V9bPQgMxiTt9n83FMzA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\Code\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
+  "projectFilePath": "C:\\Users\\haihe\\OneDrive\\Documents\\Files\\VGU\\Thesis\\project\\VGUBOOKINGAPP\\API\\BookingApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\haihe\\.nuget\\packages\\aspose.cells\\20.1.0\\aspose.cells.20.1.0.nupkg.sha512",
     "C:\\Users\\haihe\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",

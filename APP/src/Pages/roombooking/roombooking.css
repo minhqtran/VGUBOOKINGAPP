@@ -1,38 +1,33 @@
-/* RoomBooking.css */
+
+.room-booking-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.select-building {
+  margin-bottom: 20px;
+}
 
 .room-list-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .room-booking-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .select-building-container {
-    margin-bottom: 16px;
-  }
-  
-  .room-list-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .room-card {
-    width: 300px;
-    margin: 16px;
-  }
-  
-  .room-details-container {
-    margin-top: 16px;
-  }
-  
-  .room-details-card {
-    width: 300px;
-    margin: 16px;
-  }
-  
-  
+.room-card {
+  width: 300px;
+  margin: 16px;
+}
+
+.room-details-container {
+  margin-top: 20px;
+}
+
+.room-details-card {
+  width: 300px;
+  margin: 16px;
+}
+
+.back-button {
+  margin-bottom: 16px;
+}

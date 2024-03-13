@@ -123,7 +123,7 @@ const RoomBooking: React.FC = () => {
 
       {selectedRoom && (
         <div className="room-details-container">
-          <Button onClick={handleBackButtonClick}>Back</Button>
+          <Button onClick={handleBackButtonClick}>Back to {building}</Button>
           <h2>Room Details</h2>
           <Card className="room-details-card" title={selectedRoom.name}>
             <img src={selectedRoom.image} alt={selectedRoom.name} style={{ width: '100%' }} />
