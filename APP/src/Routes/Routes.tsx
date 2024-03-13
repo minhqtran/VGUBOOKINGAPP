@@ -11,6 +11,7 @@ import HelpPage from "../Pages/HelpPage/HelpPage";
 import Regulation from "../Pages/RegulationPage/Regulation";
 import RoomBooking from "../Pages/roombooking/RoomBooking";
 import RoomInfo from "../components/RoomInfo/RoomInfo";
+import NotiPage from "../Pages/NotiPage/NotiPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([
       { path: "/help", element: <HelpPage /> },
       { path: "/regulation", element: <Regulation /> },
       { path: "/room-info", element: <RoomInfo roomName={""} roomType={""} /> },
+      { path: "/notification", element: <NotiPage /> },
     ],
   },
 ]);
