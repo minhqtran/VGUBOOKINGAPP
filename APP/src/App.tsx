@@ -2,12 +2,20 @@
 import React from "react";
 import "./App.css";
 import Sidenav from "./components/sidenav/Sidenav";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 const App: React.FC = () => {
+  const location = useLocation();
+
+  // Define the routes where the side navigation should not be displayed
+  const excludedRoutes = ["/login"];
+
+  // Check if the current route is excluded
+  const isExcludedRoute = excludedRoutes.includes(location.pathname);
+
   return (
     <div className="app-container">
-      <Sidenav />
+      {!isExcludedRoute && <Sidenav />}
       <div className="main-content">
         <Outlet />
       </div>

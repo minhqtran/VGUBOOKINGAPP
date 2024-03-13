@@ -176,7 +176,7 @@ img{
 /* App display */
 .app-container{
   display: flex;
-  flex-direction: row;
+  height: 100vh;
 }
 
 .main-content{
@@ -185,7 +185,7 @@ img{
 }
 
 .sidenav-container{
- width: 250px;
+  width: 250px;
 }
 
 /* Breakpoints */
