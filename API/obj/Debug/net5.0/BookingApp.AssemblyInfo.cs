@@ -15,7 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookingApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca7c61d61e91e26e29cf7a5864a24469a568b495")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+febd18736ba7a63cdfe5d490b15e44fe9ef7f4a1")]
+>>>>>>> 54453c95078f25d2858c29e348ef2194ac45de6e
 [assembly: System.Reflection.AssemblyProductAttribute("BookingApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookingApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -176,16 +176,17 @@ img{
 /* App display */
 .app-container{
   display: flex;
-  flex-direction: row;
+  height: 100vh;
 }
 
 .main-content{
   flex:1;
   padding-left: 50px;
+  overflow-y: auto;
 }
 
 .sidenav-container{
- width: 250px;
+  width: 250px;
 }
 
 /* Breakpoints */
