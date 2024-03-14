@@ -2,6 +2,7 @@ import "./roominfo.css";
 import "../../App.css";
 
 import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
 
 interface RoomInfoProps {
   roomName: string;
@@ -9,7 +10,8 @@ interface RoomInfoProps {
 }
 
 const RoomInfo: React.FC<RoomInfoProps> = ({ roomName, roomType }) => {
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string>("Overall Info");
+  // const history = useHistory();
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -17,6 +19,12 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ roomName, roomType }) => {
 
   roomName = "Lecture Hall - Room 666";
   roomType = "You know what it is";
+
+  const handleReturnButtonClick = () => {
+    // history.goBack();
+     // Go back to the previous page (room booking page)
+  };
+
   return (
     <div className="room-info-container">
       <img
@@ -24,7 +32,12 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ roomName, roomType }) => {
         alt="Room Picture"
         className="room-picture"
       />
-      <div className="room-name">{roomName}</div>
+      <div className="button-and-title-container">
+        <button className="button return-button" type="button" onClick={handleReturnButtonClick}>
+            Return
+        </button>
+        <div className="room-name">{roomName}</div>
+      </div>
       <div className="room-type">{roomType}</div>
       <div className="option-buttons">
         <button
@@ -61,8 +74,10 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ roomName, roomType }) => {
           <div className="table-info">Import Table here</div>
         </div>
       )}
-      <div className="reservation-button">
-        <button>Make Reservation</button>
+      <div className="booking-button-container">
+        <button className="button booking-button" type="button" onClick={handleReturnButtonClick}>
+            Create Booking
+        </button>
       </div>
     </div>
   );
