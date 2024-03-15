@@ -11,6 +11,7 @@ using Syncfusion.JavaScript.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -144,17 +145,26 @@ namespace BookingApp.Services.Base
             try
             {
 
-                var lists = _repo.FindAll().ProjectTo<TDto>(_configMapper).OrderByDescending(x =>
-                typeof(TDto).GetProperty("ID"));// using mysql
+                // Tạo một biểu thức tham chiếu tới thuộc tính "ID" của đối tượng TDto
+                var parameter = Expression.Parameter(typeof(TDto), "x");
+                var property = Expression.Property(parameter, "ID");
 
-                //var lists = _repo.FindAll().ProjectTo<TDto>(_configMapper); // using sql
+                // Chuyển đổi kiểu trả về từ int sang object
+                var conversion = Expression.Convert(property, typeof(object));
+
+                var lambda = Expression.Lambda<Func<TDto, object>>(conversion, parameter);
+
+                // Tạo biểu thức sắp xếp sử dụng biểu thức lambda đã tạo
+                var orderByExp = Expression.Lambda<Func<TDto, object>>(conversion, lambda.Parameters);
+
+                var lists = _repo.FindAll().ProjectTo<TDto>(_configMapper).OrderByDescending(orderByExp);
 
                 return await PagedList<TDto>.CreateAsync(lists, param.PageNumber, param.PageSize);
             }
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 

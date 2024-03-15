@@ -4,80 +4,59 @@ using BookingApp.Helpers;
 using BookingApp.Services;
 using Syncfusion.JavaScript;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace BookingApp.Controllers
 {
     public class CampusController : ApiControllerBase
     {
-        private readonly IBuildingService _service;
+        private readonly ICampusService _service;
 
-        public CampusController(IBuildingService service)
+        public CampusController(ICampusService service)
         {
             _service = service;
         }
-
-        [HttpGet]
-        public async Task<ActionResult> GetSitesByAccount()
-        {
-            return Ok(await _service.GetSitesByAccount());
-        }
-        [HttpPost]
-        public async Task<ActionResult> DeleteUploadFile([FromForm] int key)
-        {
-            return Ok(await _service.DeleteUploadFile(key));
-        }
-        [HttpPost]
-        public async Task<ActionResult> AddFormAsync([FromForm] BuildingDto model)
-        {
-            return Ok(await _service.AddFormAsync(model));
-        }
-
 
         [HttpGet]
         public async Task<ActionResult> GetAllAsync()
         {
             return Ok(await _service.GetAllAsync());
         }
-
-        [HttpPost]
-        public async Task<ActionResult> AddAsync([FromBody] BuildingDto model)
-        {
-            return StatusCodeResult(await _service.AddAsync(model));
-        }
-
-        [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] BuildingDto model)
-        {
-            return StatusCodeResult(await _service.UpdateAsync(model));
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult> DeleteAsync(int id)
-        {
-            return StatusCodeResult(await _service.DeleteAsync(id));
-        }
-
         [HttpGet]
         public async Task<ActionResult> GetByIDAsync(int id)
         {
             return Ok(await _service.GetByIDAsync(id));
         }
-
         [HttpGet]
-        public async Task<ActionResult> GetWithPaginationsAsync(PaginationParams paramater)
+        public async Task<ActionResult> GetWithPaginationsAsync([FromQuery]PaginationParams paramater)
         {
             return Ok(await _service.GetWithPaginationsAsync(paramater));
         }
         [HttpPost]
-        public async Task<ActionResult> LoadData([FromBody] DataManager request, [FromQuery] string farmGuid)
+        public async Task<ActionResult> AddAsync(CampusDto model)
         {
-            var data = await _service.LoadData(request, farmGuid);
-            return Ok(data);
+            return StatusCodeResult(await _service.AddAsync(model));
         }
-        [HttpGet]
-        public async Task<ActionResult> GetAudit(decimal id)
+        [HttpPost]
+        public async Task<ActionResult> AddRangeAsync(List<CampusDto> model)
         {
-            return Ok(await _service.GetAudit(id));
+            return StatusCodeResult(await _service.AddRangeAsync(model));
+        }
+        [HttpPut]
+        public async Task<ActionResult> UpdateAsync(CampusDto model)
+        {
+            return StatusCodeResult(await _service.UpdateAsync(model));
+        }
+        [HttpDelete]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            return StatusCodeResult(await _service.DeleteAsync(id));
         }
     }
-}
+            
+    //[HttpGet]
+        //public async Task<ActionResult> GetAudit(decimal id)
+        //{
+        //    return Ok(await _service.GetAudit(id));
+        //}
+    }

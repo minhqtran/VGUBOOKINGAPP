@@ -74,10 +74,10 @@ namespace BookingApp.Controllers
             var data = await _service.LoadData(request, farmGuid);
             return Ok(data);
         }
-        [HttpGet]
-        public async Task<ActionResult> GetAudit(decimal id)
-        {
-            return Ok(await _service.GetAudit(id));
-        }
+        //[HttpGet]
+        //public async Task<ActionResult> GetAudit(decimal id)
+        //{
+        //    return Ok(await _service.GetAudit(id));
+        //}
     }
 }

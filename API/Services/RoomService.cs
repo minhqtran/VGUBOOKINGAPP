@@ -61,19 +61,19 @@ namespace BookingApp.Services
 
         public async Task<List<RoomDto>> SearchRoom(RoomFilter roomFilter)
         {
-            var query = _repo.FindAll().ProjectTo<RoomDto>(_configMapper);
-            if (!string.IsNullOrWhiteSpace(roomFilter.BuildingGuid))
-            {
-                query = query.Where(x => x.BuildingGuid == roomFilter.BuildingGuid);
-            }
+            var query = _repo.FindAll().ProjectTo<RoomDto>(_configMapper); // join others table here
+            //if (!string.IsNullOrWhiteSpace(roomFilter.BuildingGuid))
+            //{
+            //    query = query.Where(x => x.BuildingGuid == roomFilter.BuildingGuid);
+            //}
             if (!string.IsNullOrWhiteSpace(roomFilter.FloorGuid))
             {
                 query = query.Where(x => x.FloorGuid == roomFilter.FloorGuid);
             }
-            if (!string.IsNullOrWhiteSpace(roomFilter.CampusGuid))
-            {
-                query = query.Where(x => x.CampusGuid == roomFilter.CampusGuid);
-            }
+            //if (!string.IsNullOrWhiteSpace(roomFilter.CampusGuid))
+            //{
+            //    query = query.Where(x => x.CampusGuid == roomFilter.CampusGuid);
+            //}
             if (!string.IsNullOrWhiteSpace(roomFilter.RoomGuid))
             {
                 query = query.Where(x => x.RoomGuid == roomFilter.RoomGuid);

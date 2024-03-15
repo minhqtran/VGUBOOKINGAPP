@@ -28,6 +28,9 @@ namespace BookingApp.Data
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Log> Log { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
+        public virtual DbSet<Campus> Campus { get; set; }
+        public virtual DbSet<Room2Facility> Room2Facility { get; set; }
+        public virtual DbSet<Facility> Facility { get; set; }
 
         //public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
@@ -43,7 +46,13 @@ namespace BookingApp.Data
                    .HasMaxLength(50);
                 entity.ToTable("Building");
             });
-
+            modelBuilder.Entity<Campus>(entity =>
+            {
+                entity.Property(e => e.Guid)
+                   .HasColumnName("Guid")
+                   .HasMaxLength(50);
+                entity.ToTable("Campus");
+            });
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.LdapName)
@@ -64,7 +73,20 @@ namespace BookingApp.Data
                    .HasColumnName("BookingGuid")
                    .HasMaxLength(50);
             });
-
+            modelBuilder.Entity<Facility>(entity =>
+            {
+                entity.Property(e => e.Guid)
+                   .HasColumnName("Guid")
+                   .HasMaxLength(50);
+                entity.ToTable("Facility");
+            });
+            modelBuilder.Entity<Room2Facility>(entity =>
+            {
+                entity.Property(e => e.Guid)
+                   .HasColumnName("Guid")
+                   .HasMaxLength(50);
+                entity.ToTable("Room2Fac");
+            });
             OnModelCreatingPartial(modelBuilder);
         }
 
