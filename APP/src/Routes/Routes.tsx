@@ -10,6 +10,7 @@ import Login from "../Pages/LoginPage/Login";
 import HelpPage from "../Pages/HelpPage/HelpPage";
 import Regulation from "../Pages/RegulationPage/Regulation";
 import RoomBookingPage from "../Pages/roombooking/RoomBookingPage";
+import BookingRequests from "../Pages/bookingrequests/BookingRequests";
 import RoomInfo from "../components/RoomInfo/RoomInfo";
 import NotiPage from "../Pages/NotiPage/NotiPage";
 
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: "/room-booking/:building", element:<RoomBookingPage /> },
       { path: "/room-booking-list", element: <RoomBookingList /> },
       { path: "/user-management", element: <UserManagement /> },
+      { path: "/booking-requests", element: <BookingRequests />},
       { path: "/help", element: <HelpPage /> },
       { path: "/regulation", element: <Regulation /> },
       { path: "/room-info", element: <RoomInfo roomName={""} roomType={""} /> },

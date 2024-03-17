@@ -11,40 +11,6 @@ import axios from 'axios'; //
 const { Content } = Layout;
 
 const UserManagement: React.FC = () => {
-  const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-      sorter: (a: any, b: any) => a.id - b.id,
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      sorter: (a: any, b: any) => a.name.localeCompare(b.name),
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-    },
-    {
-      title: "Department",
-      dataIndex: "department",
-      key: "department",
-    },
-    {
-      title: "Staff Code",
-      dataIndex: "staffCode",
-      key: "staffCode",
-    },
-  ];
 
   const [users, setUsers] = useState<any[]>([]);
   const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -68,6 +34,51 @@ const UserManagement: React.FC = () => {
       console.error('Error fetching user data:', error);
     }
   };
+
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      sorter: (a: any, b: any) => a.id - b.id,
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Role',
+      dataIndex: 'role',
+      key: 'role',
+    },
+    {
+      title: 'Department',
+      dataIndex: 'department',
+      key: 'department',
+    },
+    {
+      title: 'Staff Code',
+      dataIndex: 'staffCode',
+      key: 'staffCode',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text: any, record: any) => (
+        <span>
+          <Button type="link" onClick={handleEditUser}>Edit</Button>
+          <Button type="link" onClick={handleDeleteUser}>Delete</Button>
+        </span>
+      ),
+    },
+  ];
 
   const handleRowClick = (record: any) => {
     setSelectedUser(record);
