@@ -75,7 +75,7 @@ const Sidenav: React.FC = () => {
             <Link to="/booking-requests">Booking Requests</Link>
           </Menu.Item>
           <Menu.Item key="appConfigManagement">
-            <Link to="/app-config-management">Application Configuration</Link>
+            <Link to="/app-config-management">App Configuration</Link>
           </Menu.Item>
         </Menu.SubMenu>
 
