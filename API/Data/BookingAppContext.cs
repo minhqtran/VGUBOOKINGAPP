@@ -85,8 +85,9 @@ namespace BookingApp.Data
                 entity.Property(e => e.Guid)
                    .HasColumnName("Guid")
                    .HasMaxLength(50);
-                entity.ToTable("Room2Fac");
+                entity.ToTable("Room2Facility");
             });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

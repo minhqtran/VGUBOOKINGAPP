@@ -6,17 +6,17 @@ using BookingApp.Services.Base;
 
 namespace BookingApp.Services
 {
-    public interface IRoom2FacilityService : IServiceBase<Room2FacilityService, Room2FacilityDto>
+    public interface IRoom2FacilityService : IServiceBase<Room2Facility, Room2FacilityDto>
     {
     }
-    public class Room2FacilityService : ServiceBase<Room2FacilityService, Room2FacilityDto>, IRoom2FacilityService
+    public class Room2FacilityService : ServiceBase<Room2Facility, Room2FacilityDto>, IRoom2FacilityService
     {
-        private readonly IRepositoryBase<Room2FacilityService> _repo;
+        private readonly IRepositoryBase<Room2Facility> _repo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
         public Room2FacilityService(
-            IRepositoryBase<Room2FacilityService> repo,
+            IRepositoryBase<Room2Facility> repo,
             IUnitOfWork unitOfWork,
             IMapper mapper,
             MapperConfiguration configMapper) : 
