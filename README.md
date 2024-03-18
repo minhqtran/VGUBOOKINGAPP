@@ -84,6 +84,7 @@ This web application was deployed as a public system to manage the booking activ
 
 ### Collaboration Diagrams
 
+## Deploy
 
 ## Software
 
@@ -102,7 +103,6 @@ The user interface design for the university booking management application will
 ### Backend Technologies
 
 ### Database (NOT UPDATED)
-
 
 ### Login and Create a new account
 #### Login

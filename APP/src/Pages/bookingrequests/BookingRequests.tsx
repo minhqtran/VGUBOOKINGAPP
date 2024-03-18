@@ -53,39 +53,47 @@ const BookingRequests: React.FC = () => {
       key: "action",
       render: (text: any, record: any) => (
         <span>
-          <Button
-            type="link"
-            className="accept-button"
-            onClick={() => handleAccept(record)}
-          >
-            Accept
-          </Button>
-          <Button
-            type="link"
-            className="decline-button"
-            onClick={() => handleDecline(record)}
-          >
-            Decline
-          </Button>
+          {(record.status === "Pending" || record.status === "Opened") && (
+            <>
+              <Button
+                type="link"
+                className="accept-button"
+                onClick={() => handleAccept(record)}
+              >
+                Accept
+              </Button>
+              <Button
+                type="link"
+                className="reject-button"
+                onClick={() => handleDecline(record)}
+              >
+                Reject
+              </Button>
+            </>
+          )}
         </span>
       ),
     },
   ];
 
   const handleAccept = (record: any) => {
-    // Update the status of the selected booking to "accepted"
-    const updatedBookings = bookings.map((booking) =>
-      booking.number === record.number ? { ...booking, status: "accepted" } : booking
-    );
-    setBookings(updatedBookings);
+    // Update the status of the selected booking to "accepted" only if the current status is "Pending"
+    if (record.status === "Pending") {
+      const updatedBookings = bookings.map((booking) =>
+        booking.number === record.number ? { ...booking, status: "Accepted" } : booking
+      );
+      setBookings(updatedBookings);
+    }
   };
 
   const handleDecline = (record: any) => {
-    // Update the status of the selected booking to "declined"
-    const updatedBookings = bookings.map((booking) =>
-      booking.number === record.number ? { ...booking, status: "declined" } : booking
-    );
-    setBookings(updatedBookings);
+    // Update the status of the selected booking to "declined" only if the current status is "Pending"
+    if (record.status === "Pending") {
+      const updatedBookings = bookings.map((booking) =>
+        booking.number === record.number ? { ...booking, status: "Rejected" } : booking
+      );
+      setBookings(updatedBookings);
+    }
   };
 
   
@@ -93,14 +101,7 @@ const BookingRequests: React.FC = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Layout className="site-layout">
         <Content style={{ margin: "0px" }}>
-
-
-          <Table
-            columns={columns}
-            dataSource={requestsData}
-            rowKey="number"
-          />
-
+          <Table columns={columns} dataSource={bookings} rowKey="number" />
         </Content>
       </Layout>
     </Layout>

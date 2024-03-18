@@ -26,6 +26,15 @@ const requestsData = [
       time: '3:00 PM - 5:00 PM',
       status: 'Rejected',
     },
+    {
+      number: '4',
+      from: 'Hai Cao Xuan',
+      reason: 'Seminar',
+      location: 'Lecture Hall, 4-406',
+      date: '2022-01-20',
+      time: '3:00 PM - 5:00 PM',
+      status: 'Open',
+    },
   ];
   
   export default requestsData;

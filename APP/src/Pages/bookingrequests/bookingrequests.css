@@ -10,6 +10,10 @@
   .status-rejected {
     color: #f5222d;
   }
+
+  .status-open {
+    color: #22f5e7;
+  }
   
   
   /* Change color for edit and delete buttons */
@@ -17,7 +21,7 @@
     color: #52c41a; /* Green color for edit button */
   }
   
-  .ant-btn-link.decline-button {
+  .ant-btn-link.reject-button {
     color: #f5222d; /* Red color for delete button */
   }
   
