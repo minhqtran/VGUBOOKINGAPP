@@ -1,5 +1,3 @@
-// RoomBookingList.tsx
-
 import React, { useState } from "react";
 import { Layout, Table, Button, Modal, Form, Input, Select } from "antd";
 import "./bookingrequests.css"; // Import CSS for styling
@@ -9,8 +7,7 @@ const { Content } = Layout;
 const { Option } = Select;
 
 const BookingRequests: React.FC = () => {
-  const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
-  const [selectedBooking, setSelectedBooking] = useState<any>(null);
+  const [bookings, setBookings] = useState<any[]>(requestsData);
 
   const columns = [
     {
@@ -75,37 +72,23 @@ const BookingRequests: React.FC = () => {
     },
   ];
 
-  const [
-    isDeleteConfirmationModalVisible,
-    setIsDeleteConfirmationModalVisible,
-  ] = useState<boolean>(false);
-
-  const handleEdit = (record: any) => {
-    setSelectedBooking(record);
-    setIsEditModalVisible(true);
+  const handleAccept = (record: any) => {
+    // Update the status of the selected booking to "accepted"
+    const updatedBookings = bookings.map((booking) =>
+      booking.number === record.number ? { ...booking, status: "accepted" } : booking
+    );
+    setBookings(updatedBookings);
   };
 
-  const handleSaveEdit = () => {
-    // Handle save edited booking logic
-    setIsEditModalVisible(false);
+  const handleDecline = (record: any) => {
+    // Update the status of the selected booking to "declined"
+    const updatedBookings = bookings.map((booking) =>
+      booking.number === record.number ? { ...booking, status: "declined" } : booking
+    );
+    setBookings(updatedBookings);
   };
 
-  const handleDelete = (record: any) => {
-    // Handle delete logic
-    setSelectedBooking(record);
-    setIsDeleteConfirmationModalVisible(true);
-  };
-
-  const handleConfirmDelete = () => {
-    // Handle confirm delete logic
-    console.log("Delete", selectedBooking);
-    setIsDeleteConfirmationModalVisible(false);
-  };
-
-  const handleCancelDelete = () => {
-    setIsDeleteConfirmationModalVisible(false);
-  };
-
+  
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Layout className="site-layout">
