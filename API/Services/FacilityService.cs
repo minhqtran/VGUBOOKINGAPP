@@ -3,14 +3,15 @@ using BookingApp.Data;
 using BookingApp.DTO;
 using BookingApp.Models;
 using BookingApp.Services.Base;
+using System.Threading.Tasks;
 
 namespace BookingApp.Services
 {
-    public interface IfacilityService:IServiceBase<Facility, FacilityDto>
+    public interface IFacilityService:IServiceBase<Facility, FacilityDto>
     {
 
     }
-    public class FacilityService : ServiceBase<Facility, FacilityDto>, IfacilityService
+    public class FacilityService : ServiceBase<Facility, FacilityDto>, IFacilityService
     {
         private readonly IRepositoryBase<Facility> _repo;
         private readonly IUnitOfWork _unitOfWork;
