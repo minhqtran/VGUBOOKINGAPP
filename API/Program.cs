@@ -6,7 +6,6 @@ using Quartz;
 using System;
 using BookingApp.Helpers.ScheduleQuartz;
 
-
 namespace BookingApp
 {
     public class Program

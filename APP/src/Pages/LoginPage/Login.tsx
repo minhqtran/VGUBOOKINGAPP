@@ -1,11 +1,11 @@
 // src/auth/Login.tsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loginBgImage from "../../assets/img/login-bg.jpg";
 import loginLogo from "../../assets/img/VGU-logo.png";
-import "./Login.css"; // Import the CSS file
+import "./login.css"; // Import the CSS file
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -22,12 +22,15 @@ const Login: React.FC = () => {
     return email === sampleEmail && password === samplePassword;
   };
 
+  let navigate = useNavigate();
+
   const handleLogin = () => {
     // Check if entered credentials match the sample credentials
     if (isValidCredentials()) {
       // Logic for successful login, e.g., redirect to dashboard
       // history.push('/dashboard');
       console.log("Successfully logged in");
+      navigate("/");
     } else {
       // Handle unsuccessful login with a toast notification
       toast.error("Invalid email or password. Please try again.");

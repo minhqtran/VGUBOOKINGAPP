@@ -12,6 +12,6 @@ namespace BookingApp.DTO.auth
     }
     public class UserForLoginRememberDto
     {
-        public int ID { get; set; }
+        public decimal ID { get; set; }
     }
 }

@@ -27,13 +27,9 @@ namespace BookingApp.Controllers
         {
             return Ok(await _service.CheckRoom());
         }
-        //[HttpGet]
-        //public async Task<ActionResult> CheckExistsitename() 
-        //{
-        //    return Ok(await _service.CheckExistsitename());
-        //}
+
         [HttpPost]
-        public async Task<ActionResult> DeleteUploadFile([FromForm] int key)
+        public async Task<ActionResult> DeleteUploadFile([FromForm] decimal key)
         {
             return Ok(await _service.DeleteUploadFile(key));
         }
@@ -75,7 +71,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetWithPaginationsAsync([FromQuery]PaginationParams paramater)
+        public async Task<ActionResult> GetWithPaginationsAsync(PaginationParams paramater)
         {
             return Ok(await _service.GetWithPaginationsAsync(paramater));
         }
@@ -85,10 +81,10 @@ namespace BookingApp.Controllers
             var data = await _service.LoadData(request, farmGuid);
             return Ok(data);
         }
-        //[HttpGet]
-        //public async Task<ActionResult> GetAudit(decimal id)
-        //{
-        //    return Ok(await _service.GetAudit(id));
-        //}
+        [HttpGet]
+        public async Task<ActionResult> GetAudit(decimal id)
+        {
+            return Ok(await _service.GetAudit(id));
+        }
     }
 }

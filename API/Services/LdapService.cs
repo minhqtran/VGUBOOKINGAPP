@@ -148,7 +148,7 @@ namespace BookingApp.Services
                             _ldapSearchBase,
                             LdapConnection.ScopeSub,
                             searchFilter,
-                            null,
+                            memberOf,
                             false
                         );
                         var userInfo = new User();

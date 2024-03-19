@@ -27,7 +27,7 @@ namespace BookingApp.Helpers
             return tokenS.Claims;
         }
 
-        public static int GetDecodeTokenByID(string token) // extract ID from token
+        public static int GetDecodeTokenByID(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             string authHeader = token.ToSafetyString();

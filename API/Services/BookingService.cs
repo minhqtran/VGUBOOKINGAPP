@@ -22,22 +22,20 @@ namespace BookingApp.Services
     public interface IBookingService : IServiceBase<Booking, BookingDto>
     {
         Task<List<BookingDto>> ConflictChecking(BookingDto model);
-        //Task<OperationResult> Disable(int id);
-        Task<OperationResult> UpdateStatus(int id, int bookingStatus);
+        Task<OperationResult> Disable(int id);
+        Task<OperationResult> UpdateStatus(int id, decimal bookingStatus);
         Task<List<BookingDto>> SearchBooking(BookingFilter bookingFilter);
     }
 
     public class BookingService : ServiceBase<Booking, BookingDto>, IBookingService
     {
         private readonly IRepositoryBase<Booking> _repo;
-        private readonly IRepositoryBase<User> _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
         private readonly IMailExtension _mailService;
         public BookingService(
                        IRepositoryBase<Booking> repo,
-                       IRepositoryBase<User> user,
                                   IUnitOfWork unitOfWork,
                                              IMapper mapper,
                                                         MapperConfiguration configMapper,
@@ -46,7 +44,6 @@ namespace BookingApp.Services
             : base(repo, unitOfWork, mapper, configMapper)
         {
             _repo = repo;
-            _userRepository = user;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configMapper = configMapper;
@@ -59,8 +56,7 @@ namespace BookingApp.Services
             var data = await query.ToListAsync();
             return data;
         }
-        public async Task<List<BookingDto>> SearchBooking(BookingFilter bookingFilter)
-        { //missing compare date
+        public async Task<List<BookingDto>> SearchBooking(BookingFilter bookingFilter) { //missing compare date
             var query = _repo.FindAll().ProjectTo<BookingDto>(_configMapper);
             if (!string.IsNullOrEmpty(bookingFilter.CampusGuid))
             {
@@ -80,11 +76,11 @@ namespace BookingApp.Services
             }
             if (bookingFilter.StartDate != null)
             {
-                query = query.Where(x => x.StartDate.Value >= bookingFilter.StartDate.Value);
+                query = query.Where(x => x.StartDate.Value.Day == bookingFilter.StartDate.Value.Day);
             }
             if (bookingFilter.EndDate != null)
             {
-                query = query.Where(x => x.EndDate.Value <= bookingFilter.EndDate.Value);
+                query = query.Where(x => x.EndDate.Value.Day == bookingFilter.EndDate.Value.Day);
             }
             // add more filter here
             var data = await query.ToListAsync();
@@ -100,7 +96,7 @@ namespace BookingApp.Services
             if (conflictBooking.Result.Count > 0) { 
                 return new OperationResult
                 {
-                    StatusCode = HttpStatusCode.OK, 
+                    StatusCode = HttpStatusCode.OK, // ?? should it be ok ?
                     Message = MessageReponse.BookingErrorTimeConflict,
                     Success = false,
                     Data = conflictBooking.Result
@@ -113,7 +109,7 @@ namespace BookingApp.Services
             item.BookingTimeS = item.StartDate.ToString("HH:mm"); // convert start date to string
             item.BookingTimeE = item.EndDate.ToString("HH:mm"); // convert end date to string
             _repo.Add(item);
-            var email = _userRepository.FindAll(x => x.Guid == item.UserGuid).FirstOrDefault().Email; // get user email
+            var email = "naccut922@gmail.com"; // should be changed to user's email
             var subject = Constants.Mailling.Subject.Create;
             var message = Constants.Mailling.Content.Create(item.BookingGuid, item.StartDate, item.EndDate, item.RoomGuid, item.CampusGuid);
             await _mailService.SendEmailAsync(email, subject, message);
@@ -136,14 +132,10 @@ namespace BookingApp.Services
 
         }
 
-        public async Task<OperationResult> UpdateStatus(int id, int bookingStatus) // function for admin to change booking status
+        public async Task<OperationResult> UpdateStatus(int id, decimal bookingStatus) // function for admin to change booking status
         {
             var item = _repo.FindByID(id);
             item.BookingStatus = bookingStatus;
-            var email = _userRepository.FindAll(x => x.Guid == item.UserGuid).FirstOrDefault().Email; // get user email
-            var subject = Constants.Mailling.Subject.Update;
-            var message = Constants.Mailling.Content.Update(item.BookingGuid, bookingStatus);
-            await _mailService.SendEmailAsync(email, subject, message);
             _repo.Update(item);
             try
             {
@@ -215,11 +207,11 @@ namespace BookingApp.Services
                     .ToListAsync();
             return await conflictBooking;
         }
-        public override async Task<OperationResult> DeleteAsync(int id)
+        public async Task<OperationResult> Disable(int id) // function for admin to disable the Status of the booking - similar to delete but not actually delete from database
         {
             var item = _repo.FindByID(id);
-            //item.CancelFlag = "Y";
             item.Status = false;
+            
             _repo.Update(item);
             try
             {
@@ -227,7 +219,7 @@ namespace BookingApp.Services
                 operationResult = new OperationResult
                 {
                     StatusCode = HttpStatusCode.OK,
-                    Message = MessageReponse.DeleteSuccess,
+                    Message = MessageReponse.DisableSuccess,
                     Success = true,
                     Data = item
                 };
@@ -238,5 +230,9 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
+        //public async void SendMailAsync(string email, string subject, string message)
+        //{
+        //        await _mailService.SendEmailAsync(email, subject, message);
+        //}
     }
 }
