@@ -87,14 +87,14 @@ const UserManagement: React.FC = () => {
   };
 
   const handleExportData = () => {
-    // Logic for exporting data
+    
   };
 
   const handleCloseViewModal = () => {
     setIsViewModalVisible(false);
   };
 
-  // Edit user logic
+  
   const handleCloseEditModal = () => {
     setIsEditModalVisible(false);
   };
@@ -106,8 +106,8 @@ const UserManagement: React.FC = () => {
   const handleSaveEdit = async () => {
     try {
       await axios.put(`/api/users/${selectedUser.id}`, form.getFieldsValue());
-      fetchUserData(); // Refresh the user data after editing a user
-      setIsEditModalVisible(false); // Close the edit modal
+      fetchUserData(); 
+      setIsEditModalVisible(false); 
     } catch (error) {
       console.error('Error saving user edit:', error);
     }
@@ -117,29 +117,25 @@ const UserManagement: React.FC = () => {
   const handleDeleteUser = async () => {
     try {
       await axios.delete(`/api/users/${selectedUser.id}`);
-      fetchUserData(); // Refresh the user data after deleting a user
-      setIsDeleteConfirmationModalVisible(false); // Close the delete confirmation modal
+      fetchUserData(); 
+      setIsDeleteConfirmationModalVisible(false); 
     } catch (error) {
       console.error('Error deleting user:', error);
     }
   };
 
   const handleConfirmDeleteUser = () => {
-    // Logic for confirming and deleting the user
     const updatedUserData = userData.filter(
       (user: any) => user.id !== selectedUser.id
     );
 
-    // Save updated data to userData file (you might need to use appropriate APIs or storage mechanisms)
     console.log(updatedUserData);
 
-    // Close both modals
     setIsDeleteConfirmationModalVisible(false);
     setIsViewModalVisible(false);
   };
 
 
-// Add user logic
   const handleAddUserModal = () => {
     setIsAddUserModalVisible(true);
   };
@@ -151,8 +147,8 @@ const UserManagement: React.FC = () => {
   const handleAddUser = async () => {
     try {
       await axios.post('/api/users', form.getFieldsValue());
-      fetchUserData(); // Refresh the user data after adding a new user
-      setIsAddUserModalVisible(false); // Close the add user modal
+      fetchUserData();
+      setIsAddUserModalVisible(false); 
     } catch (error) {
       console.error('Error adding user:', error);
     }
@@ -189,7 +185,6 @@ const UserManagement: React.FC = () => {
               onOk={handleAddUser}
             >
               <Form form={form}>
-                {/* Include form fields for adding a new user */}
                 <Form.Item label="Name" name="name">
                   <Input />
                 </Form.Item>
@@ -229,7 +224,6 @@ const UserManagement: React.FC = () => {
                     </Button>,
                   ]}
                 >
-                  {/* Display user information */}
                   <p>ID: {selectedUser.id}</p>
                   <p>Name: {selectedUser.name}</p>
                   <p>Email: {selectedUser.email}</p>
@@ -252,7 +246,6 @@ const UserManagement: React.FC = () => {
                   ]}
                 >
                   <Form form={form}>
-                    {/* Include form fields for editing user information */}
                     <Form.Item label="ID" name="id">
                       <Input readOnly />
                     </Form.Item>

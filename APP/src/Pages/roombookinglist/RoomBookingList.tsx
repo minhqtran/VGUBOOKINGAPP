@@ -9,7 +9,7 @@ const { Option } = Select;
 const RoomBookingList: React.FC = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
   const [isCancelModalVisible, setIsCancelModalVisible] = useState<boolean>(false);
-  const [selectedBooking, setSelectedBooking] = useState<any>(null);
+  const [selectedBooking, setSelectedBooking] = useState<any>(roomBookingData);
 
   // Edit logics
   const handleEdit = (record: any) => {
@@ -17,9 +17,15 @@ const RoomBookingList: React.FC = () => {
     setIsEditModalVisible(true);
   };
 
-  const handleSaveEdit = () => {
-    console.log("Updated", selectedBooking);
-    setIsEditModalVisible(false);
+  const handleSaveEdit = (record: any) => {
+    if (record.status === "Accepted" || record.status === "Open") {
+      const updatedBookings = selectedBooking.map((booking) =>
+        booking.number === record.number ? { ...booking, status: "Pending" } : booking
+      );
+      setSelectedBooking(updatedBookings);
+      setIsEditModalVisible(false);
+      console.log("Updated", selectedBooking);
+    }
   };
 
   // Cancel Logics
@@ -145,7 +151,7 @@ const RoomBookingList: React.FC = () => {
 
           <Modal
             title="Cancel Booking"
-            open={isCancelModalVisible}
+            open={isCancelModalVisible} 
             onCancel={() => setIsCancelModalVisible(false)}
             onOk={handleConfirmCancel}
           ></Modal>

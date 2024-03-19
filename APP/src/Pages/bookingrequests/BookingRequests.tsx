@@ -53,7 +53,7 @@ const BookingRequests: React.FC = () => {
       key: "action",
       render: (text: any, record: any) => (
         <span>
-          {(record.status === "Pending" || record.status === "Opened") && (
+          {(record.status === "Pending" || record.status === "Open") && (
             <>
               <Button
                 type="link"
