@@ -1,18 +1,20 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using BookingApp.Constants;
 using BookingApp.Data;
+using BookingApp.DTO;
 using BookingApp.Helpers;
+using BookingApp.Models;
+using Microsoft.EntityFrameworkCore;
+using Syncfusion.JavaScript;
+using Syncfusion.JavaScript.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
-using BookingApp.DTO;
+using System.Linq.Expressions;
 using System.Net;
-using BookingApp.Constants;
-using BookingApp.Models;
-using Syncfusion.JavaScript;
-using Syncfusion.JavaScript.DataSources;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace BookingApp.Services.Base
 {
@@ -25,7 +27,7 @@ namespace BookingApp.Services.Base
         Task<OperationResult> UpdateAsync(TDto model);
         Task<OperationResult> UpdateRangeAsync(List<TDto> model);
 
-        Task<OperationResult> DeleteAsync(int  id);
+        Task<OperationResult> DeleteAsync(int id);
 
         Task<List<TDto>> GetAllAsync();
 
@@ -100,7 +102,7 @@ namespace BookingApp.Services.Base
             return operationResult;
         }
 
-        public virtual async Task<OperationResult> DeleteAsync(int  id)
+        public virtual async Task<OperationResult> DeleteAsync(int id)
         {
             var item = _repo.FindByID(id);
             _repo.Remove(item);
@@ -133,15 +135,37 @@ namespace BookingApp.Services.Base
         {
             return _mapper.Map<T, TDto>(_repo.FindByID(id));
         }
-        
+
         public virtual async Task<TDto> GetByIDAsync(int id)
         {
-            return  _mapper.Map<T, TDto>( await _repo.FindByIDAsync(id));
+            return _mapper.Map<T, TDto>(await _repo.FindByIDAsync(id));
         }
         public virtual async Task<PagedList<TDto>> GetWithPaginationsAsync(PaginationParams param)
         {
-            var lists = _repo.FindAll().ProjectTo<TDto>(_configMapper).OrderByDescending(x => x.GetType().GetProperty("ID").GetValue(x));
-            return await PagedList<TDto>.CreateAsync(lists, param.PageNumber, param.PageSize);
+            try
+            {
+
+                // Tạo một biểu thức tham chiếu tới thuộc tính "ID" của đối tượng TDto
+                var parameter = Expression.Parameter(typeof(TDto), "x");
+                var property = Expression.Property(parameter, "ID");
+
+                // Chuyển đổi kiểu trả về từ int sang object
+                var conversion = Expression.Convert(property, typeof(object));
+
+                var lambda = Expression.Lambda<Func<TDto, object>>(conversion, parameter);
+
+                // Tạo biểu thức sắp xếp sử dụng biểu thức lambda đã tạo
+                var orderByExp = Expression.Lambda<Func<TDto, object>>(conversion, lambda.Parameters);
+
+                var lists = _repo.FindAll().ProjectTo<TDto>(_configMapper).OrderByDescending(orderByExp);
+
+                return await PagedList<TDto>.CreateAsync(lists, param.PageNumber, param.PageSize);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public virtual async Task<PagedList<TDto>> SearchAsync(PaginationParams param, object text)
@@ -173,7 +197,7 @@ namespace BookingApp.Services.Base
             }
             return operationResult;
         }
-    
+
         public virtual async Task<OperationResult> UpdateRangeAsync(List<TDto> model)
         {
             var item = _mapper.Map<List<T>>(model);
@@ -196,7 +220,7 @@ namespace BookingApp.Services.Base
             return operationResult;
         }
 
-       public virtual async Task<object> GetDataDropdownlist(DataManager data)
+        public virtual async Task<object> GetDataDropdownlist(DataManager data)
         {
             var datasource = _repo.FindAll().AsQueryable();
             var count = await datasource.CountAsync();

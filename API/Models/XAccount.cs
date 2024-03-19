@@ -8,7 +8,7 @@ namespace BookingApp.Models
 {
     public partial class XAccount: IAuditEntity
     {
-        public decimal AccountId { get; set; }
+        public int AccountId { get; set; }
         public decimal? ClinicId { get; set; }
         public string Uid { get; set; }
         public string Upwd { get; set; }
