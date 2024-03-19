@@ -32,11 +32,13 @@ namespace BookingApp.Services
     public class RoomService : ServiceBase<Room, RoomDto>, IRoomService
     {
         private readonly IRepositoryBase<Room> _repo;
+        //private readonly IRepositoryBase<Log> _repoLog;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
         public RoomService(
                        IRepositoryBase<Room> repo,
+                            //IRepositoryBase<Log> repoLog,
                                   IUnitOfWork unitOfWork,
                                              IMapper mapper,
                                                         MapperConfiguration configMapper
@@ -44,6 +46,7 @@ namespace BookingApp.Services
             : base(repo, unitOfWork, mapper, configMapper)
         {
             _repo = repo;
+            //_repoLog = repoLog;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configMapper = configMapper;
@@ -58,19 +61,19 @@ namespace BookingApp.Services
 
         public async Task<List<RoomDto>> SearchRoom(RoomFilter roomFilter)
         {
-            var query = _repo.FindAll().ProjectTo<RoomDto>(_configMapper);
-            if (!string.IsNullOrWhiteSpace(roomFilter.BuildingGuid))
-            {
-                query = query.Where(x => x.BuildingGuid == roomFilter.BuildingGuid);
-            }
+            var query = _repo.FindAll().ProjectTo<RoomDto>(_configMapper); // join others table here
+            //if (!string.IsNullOrWhiteSpace(roomFilter.BuildingGuid))
+            //{
+            //    query = query.Where(x => x.BuildingGuid == roomFilter.BuildingGuid);
+            //}
             if (!string.IsNullOrWhiteSpace(roomFilter.FloorGuid))
             {
                 query = query.Where(x => x.FloorGuid == roomFilter.FloorGuid);
             }
-            if (!string.IsNullOrWhiteSpace(roomFilter.CampusGuid))
-            {
-                query = query.Where(x => x.CampusGuid == roomFilter.CampusGuid);
-            }
+            //if (!string.IsNullOrWhiteSpace(roomFilter.CampusGuid))
+            //{
+            //    query = query.Where(x => x.CampusGuid == roomFilter.CampusGuid);
+            //}
             if (!string.IsNullOrWhiteSpace(roomFilter.RoomGuid))
             {
                 query = query.Where(x => x.RoomGuid == roomFilter.RoomGuid);

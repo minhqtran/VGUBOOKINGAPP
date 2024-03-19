@@ -1,3 +1,5 @@
+// RoomBookingList.tsx
+
 import React, { useState } from "react";
 import { Layout, Table, Button, Modal, Form, Input, Select } from "antd";
 import "./roombookinglist.css"; // Import CSS for styling
@@ -8,37 +10,7 @@ const { Option } = Select;
 
 const RoomBookingList: React.FC = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
-  const [isCancelModalVisible, setIsCancelModalVisible] = useState<boolean>(false);
-  const [selectedBooking, setSelectedBooking] = useState<any>(roomBookingData);
-
-  // Edit logics
-  const handleEdit = (record: any) => {
-    setSelectedBooking(record);
-    setIsEditModalVisible(true);
-  };
-
-  const handleSaveEdit = (record: any) => {
-    if (record.status === "Accepted" || record.status === "Open") {
-      const updatedBookings = selectedBooking.map((booking) =>
-        booking.number === record.number ? { ...booking, status: "Pending" } : booking
-      );
-      setSelectedBooking(updatedBookings);
-      setIsEditModalVisible(false);
-      console.log("Updated", selectedBooking);
-    }
-  };
-
-  // Cancel Logics
-  const handleCancel = (record: any) => {
-    setSelectedBooking(record);
-    setIsCancelModalVisible(true);
-  };
-
-  const handleConfirmCancel = () => {
-    console.log("Cancel", selectedBooking);
-    setIsCancelModalVisible(true);
-  };
-
+  const [selectedBooking, setSelectedBooking] = useState<any>(null);
 
   const columns = [
     {
@@ -79,33 +51,62 @@ const RoomBookingList: React.FC = () => {
       key: "action",
       render: (text: any, record: any) => (
         <span>
-          {["Rejected", "Canceled"].includes(record.status) ? null : (
-            <>
-              <Button
-                type="link"
-                className="edit-button"
-                onClick={() => handleEdit(record)}
-              >
-                Edit
-              </Button>
-              <Button
-                type="link"
-                className="cancel-button"
-                onClick={() => handleCancel(record)}
-              >
-                Cancel
-              </Button>
-            </>
-          )}
+          <Button
+            type="link"
+            className="edit-button"
+            onClick={() => handleEdit(record)}
+          >
+            Edit
+          </Button>
+          <Button
+            type="link"
+            className="delete-button"
+            onClick={() => handleDelete(record)}
+          >
+            Delete
+          </Button>
         </span>
       ),
     },
   ];
 
+  const [
+    isDeleteConfirmationModalVisible,
+    setIsDeleteConfirmationModalVisible,
+  ] = useState<boolean>(false);
+
+  const handleEdit = (record: any) => {
+    setSelectedBooking(record);
+    setIsEditModalVisible(true);
+  };
+
+  const handleSaveEdit = () => {
+    // Handle save edited booking logic
+    setIsEditModalVisible(false);
+  };
+
+  const handleDelete = (record: any) => {
+    // Handle delete logic
+    setSelectedBooking(record);
+    setIsDeleteConfirmationModalVisible(true);
+  };
+
+  const handleConfirmDelete = () => {
+    // Handle confirm delete logic
+    console.log("Delete", selectedBooking);
+    setIsDeleteConfirmationModalVisible(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteConfirmationModalVisible(false);
+  };
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Layout className="site-layout">
-        <Content style={{ margin: "0px" }}>
+        <Content style={{ margin: "16px" }}>
+          {/* ... rest of the code ... */}
+
           <Table
             columns={columns}
             dataSource={roomBookingData}
@@ -128,7 +129,7 @@ const RoomBookingList: React.FC = () => {
                 <Input value={selectedBooking?.reason} />
               </Form.Item>
               <Form.Item label="Location">
-                <Input value={selectedBooking?.location} disabled />
+                <Input value={selectedBooking?.location} />
               </Form.Item>
               <Form.Item label="Date">
                 <Input value={selectedBooking?.date} />
@@ -143,18 +144,10 @@ const RoomBookingList: React.FC = () => {
                   <Option value="pending">Pending</Option>
                   <Option value="rejected">Rejected</Option>
                   <Option value="canceled">Canceled</Option>
-                  <Option value="open">Open</Option>
                 </Select>
               </Form.Item>
             </Form>
           </Modal>
-
-          <Modal
-            title="Cancel Booking"
-            open={isCancelModalVisible} 
-            onCancel={() => setIsCancelModalVisible(false)}
-            onOk={handleConfirmCancel}
-          ></Modal>
         </Content>
       </Layout>
     </Layout>

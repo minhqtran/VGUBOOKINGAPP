@@ -1,9 +1,14 @@
 import React from "react";
+import Sidenav from "../../Components/sidenav/Sidenav";
 
 interface Props {}
 
-const HomePage: React.FC = (props: Props) => {
-  return <>This is the home page;</>;
+const HomePage = (props: Props) => {
+  return (
+    <div>
+      <Sidenav />
+    </div>
+  );
 };
 
 export default HomePage;

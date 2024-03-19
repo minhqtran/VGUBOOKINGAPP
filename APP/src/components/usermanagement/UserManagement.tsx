@@ -1,84 +1,57 @@
 // UserManagement.tsx
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Button, Table, Card, Modal, Form, Input } from "antd";
 import Sidenav from "../sidenav/Sidenav";
 import userData from "./userData"; // Import sample user data
 import "./usermanagement.css"; // Import CSS for styling
-import axios from 'axios'; //
-
 
 const { Content } = Layout;
 
 const UserManagement: React.FC = () => {
-
-  const [users, setUsers] = useState<any[]>([]);
-  const [selectedUser, setSelectedUser] = useState<any>(null);
-  const [isAddUserModalVisible, setIsAddUserModalVisible] = useState<boolean>(false);
-  const [isViewModalVisible, setIsViewModalVisible] = useState<boolean>(false);
-  const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
-  const [isDeleteConfirmationModalVisible, setIsDeleteConfirmationModalVisible] = useState<boolean>(false);
-  const [form] = Form.useForm();
-
-  // Fetch user data when the component mounts
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  // Fetch user data logic
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get('/api/users');
-      setUsers(response.data);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
-
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
       sorter: (a: any, b: any) => a.id - b.id,
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
       sorter: (a: any, b: any) => a.name.localeCompare(b.name),
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
-      title: 'Role',
-      dataIndex: 'role',
-      key: 'role',
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
     },
     {
-      title: 'Department',
-      dataIndex: 'department',
-      key: 'department',
+      title: "Department",
+      dataIndex: "department",
+      key: "department",
     },
     {
-      title: 'Staff Code',
-      dataIndex: 'staffCode',
-      key: 'staffCode',
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text: any, record: any) => (
-        <span>
-          <Button type="link" onClick={handleEditUser}>Edit</Button>
-          <Button type="link" onClick={handleDeleteUser}>Delete</Button>
-        </span>
-      ),
+      title: "Staff Code",
+      dataIndex: "staffCode",
+      key: "staffCode",
     },
   ];
+
+  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [isViewModalVisible, setIsViewModalVisible] = useState<boolean>(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
+  const [
+    isDeleteConfirmationModalVisible,
+    setIsDeleteConfirmationModalVisible,
+  ] = useState<boolean>(false);
+  const [form] = Form.useForm();
 
   const handleRowClick = (record: any) => {
     setSelectedUser(record);
@@ -87,14 +60,17 @@ const UserManagement: React.FC = () => {
   };
 
   const handleExportData = () => {
-    
+    // Logic for exporting data
+  };
+
+  const handleAddUser = () => {
+    // Logic for adding a user
   };
 
   const handleCloseViewModal = () => {
     setIsViewModalVisible(false);
   };
 
-  
   const handleCloseEditModal = () => {
     setIsEditModalVisible(false);
   };
@@ -103,59 +79,37 @@ const UserManagement: React.FC = () => {
     setIsEditModalVisible(true);
   };
 
-  const handleSaveEdit = async () => {
-    try {
-      await axios.put(`/api/users/${selectedUser.id}`, form.getFieldsValue());
-      fetchUserData(); 
-      setIsEditModalVisible(false); 
-    } catch (error) {
-      console.error('Error saving user edit:', error);
-    }
-  };
+  const handleSaveEdit = () => {
+    // Logic for saving edited user data
+    const updatedUserData = userData.map((user: any) =>
+      user.id === selectedUser.id ? { ...user, ...form.getFieldsValue() } : user
+    );
 
-// Delete user logic
-  const handleDeleteUser = async () => {
-    try {
-      await axios.delete(`/api/users/${selectedUser.id}`);
-      fetchUserData(); 
-      setIsDeleteConfirmationModalVisible(false); 
-    } catch (error) {
-      console.error('Error deleting user:', error);
-    }
+    // Save updated data to userData file (you might need to use appropriate APIs or storage mechanisms)
+    console.log(updatedUserData);
+
+    // Close both modals
+    setIsViewModalVisible(false);
+    setIsEditModalVisible(false);
   };
 
   const handleConfirmDeleteUser = () => {
+    // Logic for confirming and deleting the user
     const updatedUserData = userData.filter(
       (user: any) => user.id !== selectedUser.id
     );
 
+    // Save updated data to userData file (you might need to use appropriate APIs or storage mechanisms)
     console.log(updatedUserData);
 
+    // Close both modals
     setIsDeleteConfirmationModalVisible(false);
     setIsViewModalVisible(false);
   };
 
-
-  const handleAddUserModal = () => {
-    setIsAddUserModalVisible(true);
-  };
-
-  const handleCancelAddUserModal = () => {
-    setIsAddUserModalVisible(false);
-  };
-
-  const handleAddUser = async () => {
-    try {
-      await axios.post('/api/users', form.getFieldsValue());
-      fetchUserData();
-      setIsAddUserModalVisible(false); 
-    } catch (error) {
-      console.error('Error adding user:', error);
-    }
-  };
-
   return (
     <Layout style={{ minHeight: "100vh" }}>
+
       <Layout className="site-layout">
         <Content style={{ margin: "16px" }}>
           <div
@@ -166,7 +120,7 @@ const UserManagement: React.FC = () => {
               <Button type="primary" onClick={handleExportData}>
                 Export Data
               </Button>
-              <Button type="primary" onClick={handleAddUserModal}>
+              <Button type="primary" onClick={handleAddUser}>
                 Add User
               </Button>
             </div>
@@ -178,35 +132,11 @@ const UserManagement: React.FC = () => {
                 onClick: () => handleRowClick(record),
               })}
             />
-            <Modal
-              title="Add User"
-              visible={isAddUserModalVisible}
-              onCancel={handleCancelAddUserModal}
-              onOk={handleAddUser}
-            >
-              <Form form={form}>
-                <Form.Item label="Name" name="name">
-                  <Input />
-                </Form.Item>
-                <Form.Item label="Email" name="email">
-                  <Input />
-                </Form.Item>
-                <Form.Item label="Role" name="role">
-                  <Input />
-                </Form.Item>
-                <Form.Item label="Department" name="department">
-                  <Input />
-                </Form.Item>
-                <Form.Item label="Staff Code" name="staffCode">
-                  <Input />
-                </Form.Item>
-              </Form>
-            </Modal>
             {selectedUser && (
               <>
                 <Modal
                   title="User Information"
-                  visible={isViewModalVisible}
+                  open={isViewModalVisible}
                   onCancel={handleCloseViewModal}
                   footer={[
                     <Button key="close" onClick={handleCloseViewModal}>
@@ -224,6 +154,7 @@ const UserManagement: React.FC = () => {
                     </Button>,
                   ]}
                 >
+                  {/* Display user information */}
                   <p>ID: {selectedUser.id}</p>
                   <p>Name: {selectedUser.name}</p>
                   <p>Email: {selectedUser.email}</p>
@@ -231,10 +162,9 @@ const UserManagement: React.FC = () => {
                   <p>Department: {selectedUser.department}</p>
                   <p>Staff Code: {selectedUser.staffCode}</p>
                 </Modal>
-                
                 <Modal
                   title="Edit User Information"
-                  visible={isEditModalVisible}
+                  open={isEditModalVisible}
                   onCancel={handleCloseEditModal}
                   footer={[
                     <Button key="close" onClick={handleCloseEditModal}>
@@ -246,6 +176,7 @@ const UserManagement: React.FC = () => {
                   ]}
                 >
                   <Form form={form}>
+                    {/* Include form fields for editing user information */}
                     <Form.Item label="ID" name="id">
                       <Input readOnly />
                     </Form.Item>
@@ -266,10 +197,9 @@ const UserManagement: React.FC = () => {
                     </Form.Item>
                   </Form>
                 </Modal>
-
                 <Modal
                   title="Confirm Deletion"
-                  visible={isDeleteConfirmationModalVisible}
+                  open={isDeleteConfirmationModalVisible}
                   onCancel={() => setIsDeleteConfirmationModalVisible(false)}
                   onOk={handleConfirmDeleteUser}
                 >

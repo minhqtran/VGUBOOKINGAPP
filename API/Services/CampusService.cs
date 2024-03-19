@@ -21,25 +21,20 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace BookingApp.Services
 {
-    public interface ICampusService : IServiceBase<Building, BuildingDto>
+    public interface ICampusService : IServiceBase<Campus, CampusDto>
     {
-        Task<object> LoadData(DataManager data, string farmGuid);
-        Task<object> GetAudit(object id);
-        Task<OperationResult> AddFormAsync(BuildingDto model);
-        Task<object> DeleteUploadFile(decimal key);
-        Task<object> GetSitesByAccount();
 
     }
-    public class CampusService : ServiceBase<Building, BuildingDto>, ICampusService
+    public class CampusService : ServiceBase<Campus, CampusDto>, ICampusService
     {
-        private readonly IRepositoryBase<Building> _repo;
+        private readonly IRepositoryBase<Campus> _repo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly MapperConfiguration _configMapper;
         private readonly IWebHostEnvironment _currentEnvironment;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public CampusService(
-            IRepositoryBase<Building> repo,
+            IRepositoryBase<Campus> repo,
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IWebHostEnvironment currentEnvironment,
@@ -56,19 +51,13 @@ namespace BookingApp.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<object> GetSitesByAccount()
-        {
-            throw new NotImplementedException();
-            //var accessToken = _httpContextAccessor.HttpContext.Request.Headers["Authorization"];
-            //int accountID = JWTExtensions.GetDecodeTokenByID(accessToken);
-        }
-        public override async Task<OperationResult> AddAsync(BuildingDto model)
+        public override async Task<OperationResult> AddAsync(CampusDto model)
         {
             try
             {
-                var item = _mapper.Map<Building>(model);
+                var item = _mapper.Map<Campus>(model);
                 item.Status = true;
-                item.BuildingGuid = Guid.NewGuid().ToString("N") + DateTime.Now.ToString("ssff").ToUpper();
+                item.Guid = Guid.NewGuid().ToString("N") + DateTime.Now.ToString("ssff").ToUpper();
                 _repo.Add(item);
                 await _unitOfWork.SaveChangeAsync();
 
@@ -86,9 +75,9 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
-        public override async Task<List<BuildingDto>> GetAllAsync()
+        public override async Task<List<CampusDto>> GetAllAsync()
         {
-            var query = _repo.FindAll(x => x.Status).ProjectTo<BuildingDto>(_configMapper);
+            var query = _repo.FindAll(x => x.Status).ProjectTo<CampusDto>(_configMapper);
 
             var data = await query.ToListAsync();
             return data;
@@ -116,46 +105,6 @@ namespace BookingApp.Services
                 operationResult = ex.GetMessageError();
             }
             return operationResult;
-        }
-
-        public async Task<object> LoadData(DataManager data, string farmGuid)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<object> GetAudit(object id)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<OperationResult> CheckExistSitename(string buildingName)
-        {
-            var item = await _repo.FindAll(x => x.Name == buildingName).AnyAsync();
-            if (item)
-            {
-                return new OperationResult { StatusCode = HttpStatusCode.OK, Message = "The building name already existed!", Success = false };
-            }
-            operationResult = new OperationResult
-            {
-                StatusCode = HttpStatusCode.OK,
-                Success = true,
-                Data = item
-            };
-            return operationResult;
-        }
-        public async Task<OperationResult> CheckExistSiteNo(string siteNo)
-        {
-            throw new NotSupportedException();
-        }
-        public async Task<OperationResult> AddFormAsync(BuildingDto model)
-        {
-
-            throw new InvalidOperationException();
-            
-        }
-
-        public async Task<object> DeleteUploadFile(decimal key)
-        {
-            
-            throw new ArgumentException();
         }
 
 

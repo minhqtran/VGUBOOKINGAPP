@@ -33,14 +33,6 @@ const roomBookingData = [
       time: '9:00 AM - 10:00 AM',
       status: 'Canceled',
     },
-    {
-      number: '5',
-      reason: 'Study',
-      location: 'Lecture Hall, 4-406',
-      date: '2022-01-25',
-      time: '9:00 AM - 10:00 AM',
-      status: 'Open',
-    },
   ];
   
   export default roomBookingData;

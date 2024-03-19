@@ -19,11 +19,12 @@ const Sidenav: React.FC = () => {
   return (
     <Sider
       className="sidenav-container"
-      width={300}
+      width={250}
       theme="light"
       breakpoint="lg"
-      collapsedWidth="100"
+      collapsedWidth="0"
     >
+      //Sidebar content
       <div className="sidenav-logo-name-container">
         <Link to="/">
           <img src={VGULogo} alt="Logo" className="sidenav-logo" />
@@ -71,11 +72,8 @@ const Sidenav: React.FC = () => {
           <Menu.Item key="userManagement">
             <Link to="/user-management">User Management</Link>
           </Menu.Item>
-          <Menu.Item key="bookingRequests">
-            <Link to="/booking-requests">Booking Requests</Link>
-          </Menu.Item>
           <Menu.Item key="appConfigManagement">
-            <Link to="/app-config-management">App Configuration</Link>
+            <Link to="/app-config-management">App Config Management</Link>
           </Menu.Item>
         </Menu.SubMenu>
 

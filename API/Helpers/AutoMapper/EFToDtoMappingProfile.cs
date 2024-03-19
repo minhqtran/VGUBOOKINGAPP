@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BookingApp.Data;
+//using BookingApp.Dto;
 using BookingApp.DTO;
 using BookingApp.DTO.auth;
 using BookingApp.Models;
@@ -14,10 +16,13 @@ namespace BookingApp.Helpers.AutoMapper
         public EFToDtoMappingProfile()
         {
             CreateMap<Building, BuildingDto>();
+            CreateMap<Campus, CampusDto>();
             CreateMap<User, UserDto>();
             CreateMap<Room, RoomDto>();
             CreateMap<Booking, BookingDto>();
+            CreateMap<Log, LogDto>();
+            CreateMap<Facility, FacilityDto>();
+            CreateMap<Room2Facility, Room2FacilityDto>();
         }
-
     }
 }

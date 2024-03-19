@@ -29,6 +29,7 @@ namespace BookingApp.Services
         Task<OperationResult> CheckExistLdap(string ldapName);
         Task<OperationResult> LoginAsync(UserForLoginDto userForLoginDto);
         Task<List<UserDto>> SearchUser(UserFilter userFilter);
+        Task<OperationResult> UpdateRole(int id, int role);
     }
     public class UserService : ServiceBase<User, UserDto>, IUserService
     {
@@ -176,6 +177,29 @@ namespace BookingApp.Services
             }
             var data = await query.ToListAsync();
             return data;
+        }
+        public async Task<OperationResult> UpdateRole(int id, int role)
+        {
+            try
+            {
+                var item = await _repo.FindByIDAsync(id);
+                item.Role = role;
+                _repo.Update(item);
+                await _unitOfWork.SaveChangeAsync();
+                var result = _mapper.Map<UserDto>(item);
+                operationResult = new OperationResult
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = MessageReponse.UpdateSuccess,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch (Exception ex)
+            {
+                operationResult = ex.GetMessageError();
+            }
+            return operationResult;
         }
         public async Task<OperationResult> LoginAsync(UserForLoginDto userForLoginDto)
         {

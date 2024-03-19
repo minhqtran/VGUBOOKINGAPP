@@ -24,9 +24,9 @@ namespace BookingApp.Services
     public interface IBuildingService : IServiceBase<Building, BuildingDto>
     {
         Task<object> LoadData(DataManager data, string farmGuid);
-        Task<object> GetAudit(object id);
+        //Task<object> GetAudit(object id);
         Task<OperationResult> AddFormAsync(BuildingDto model);
-        Task<object> DeleteUploadFile(decimal key);
+        Task<object> DeleteUploadFile(int key);
         Task<object> GetSitesByAccount();
         Task<object> CheckRoom();
 
@@ -139,21 +139,32 @@ namespace BookingApp.Services
             }
             return operationResult;
         }
-       
+
+        //public override async Task<PagedList<BuildingDto>> GetWithPaginationsAsync(PaginationParams param)
+        //{
+        //    var lists = _repo.FindAll().ProjectTo<BuildingDto>(_configMapper).OrderByDescending(x => x.ID);
+
+        //    return await PagedList<BuildingDto>.CreateAsync(lists, param.PageNumber, param.PageSize);
+        //}
         public async Task<object> LoadData(DataManager data, string farmGuid)
         {
             throw new NotImplementedException();
         }
-        public async Task<object> GetAudit(object id)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<object> GetAudit(object id)
+        //{
+        //    throw new NotImplementedException();
+        //}
         public async Task<OperationResult> CheckExistSitename(string buildingName)
         {
             var item = await _repo.FindAll(x => x.Name == buildingName).AnyAsync();
             if (item)
             {
-                return new OperationResult { StatusCode = HttpStatusCode.OK, Message = "The building name already existed!", Success = false };
+                return new OperationResult 
+                { 
+                    StatusCode = HttpStatusCode.OK, 
+                    Message = "The building name already existed!", 
+                    Success = false 
+                };
             }
             operationResult = new OperationResult
             {
@@ -174,7 +185,7 @@ namespace BookingApp.Services
             
         }
 
-        public async Task<object> DeleteUploadFile(decimal key)
+        public async Task<object> DeleteUploadFile(int key)
         {
             
             throw new ArgumentException();
@@ -182,7 +193,7 @@ namespace BookingApp.Services
 
         public async Task<object> CheckRoom()
         {
-            var query = _repo.FindAll().ToListAsync();
+            var query = await _repo.FindAll().ToListAsync();
 
             return query;
         }

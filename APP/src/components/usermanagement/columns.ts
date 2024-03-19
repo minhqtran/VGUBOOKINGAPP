@@ -44,7 +44,7 @@ const columns: Column<any>[] = [
     render: (text: any, record: any) => (
       <span>
         <Button type="link">Edit</Button>
-        <Button type="link" onclick={}>Delete</Button>
+        <Button type="link">Delete</Button>
       </span>
     ),
   },
